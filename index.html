@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monkey Phone | Cobertura en pueblos mágicos y donde nadie más llega</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #34A853;
+      --primary-dark: #2d9249;
+      --accent: #F5A623;
+      --navy: #1a3a2a;
+      --bg: #f0f7f2;
+      --white: #ffffff;
+      --text: #1a3a2a;
+      --text-light: #5a7d68;
+      --card-bg: #ffffff;
+      --card-border: rgba(26,58,42,0.08);
+      --gradient-green: linear-gradient(135deg, #34A853 0%, #43b864 100%);
+      --gradient-accent: linear-gradient(135deg, #F5A623 0%, #F7C948 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0.75rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .navbar-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .navbar-logo img { width: 48px; height: 48px; border-radius: 12px; }
+    .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
+    .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
+    .navbar-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+    .navbar-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+    .navbar-links a:hover { color: var(--navy); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.4rem; border-radius: 10px;
+      font-weight: 600; font-size: 0.88rem; text-decoration: none;
+      transition: all 0.25s ease; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--gradient-green); color: #fff; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(52,168,83,0.35); }
+    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--card-border); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: 0.3s; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 7rem 2rem 4rem;
+      background: linear-gradient(180deg, #e8f5ec 0%, var(--bg) 100%);
+    }
+    .hero-content { max-width: 800px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(52,168,83,0.08); border: 1px solid rgba(52,168,83,0.2);
+      padding: 0.45rem 1.1rem; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 500; color: var(--primary); margin-bottom: 1.75rem;
+    }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.25rem; color: var(--navy); }
+    .hero h1 .highlight { background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.15rem; color: var(--text-light); max-width: 580px; margin: 0 auto 2.5rem; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== CASHBACK BANNER ===== */
+    .cashback-banner {
+      padding: 0 2rem 2rem; display: flex; justify-content: center;
+    }
+    .cashback-content {
+      background: linear-gradient(135deg, var(--accent) 0%, #F7C948 100%);
+      border-radius: 16px; padding: 1.5rem 2.5rem; text-align: center;
+      max-width: 520px; width: 100%; box-shadow: 0 4px 16px rgba(245,166,35,0.2);
+    }
+    .cashback-badge {
+      display: inline-block; background: rgba(255,255,255,0.3);
+      padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.5rem;
+    }
+    .cashback-content h2 { font-size: 1.2rem; font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; }
+    .cashback-content p { font-size: 0.85rem; color: rgba(26,58,42,0.75); }
+
+    /* ===== RECARGA ===== */
+    .recarga-section { padding: 0 2rem 4rem; display: flex; justify-content: center; margin-top: -3rem; position: relative; z-index: 2; }
+    .recarga-card {
+      background: var(--navy); border-radius: 20px; padding: 2.5rem 3rem;
+      max-width: 520px; width: 100%; text-align: center;
+      box-shadow: 0 8px 30px rgba(26,58,42,0.2);
+    }
+    .recarga-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #fff; }
+    .recarga-card p { color: rgba(255,255,255,0.7); margin-bottom: 1.75rem; font-size: 0.9rem; }
+    .input-group { display: flex; gap: 0.75rem; }
+    .input-group input {
+      flex: 1; padding: 0.85rem 1.1rem; border-radius: 10px;
+      border: none; background: rgba(255,255,255,0.12); color: #fff;
+      font-size: 1rem; font-family: inherit; outline: none;
+    }
+    .input-group input::placeholder { color: rgba(255,255,255,0.5); }
+    .input-group input:focus { background: rgba(255,255,255,0.18); }
+
+    /* ===== PLANES ===== */
+    .planes-section { padding: 4rem 2rem; text-align: center; }
+    .section-title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 0.5rem; color: var(--navy); }
+    .section-subtitle { color: var(--text-light); font-size: 1rem; max-width: 520px; margin: 0 auto 2.5rem; }
+    .planes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; max-width: 1000px; margin: 0 auto; }
+
+    .plan-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 2rem 1.75rem; text-align: left;
+      transition: transform 0.25s, box-shadow 0.25s; position: relative;
+      display: flex; flex-direction: column;
+    }
+    .plan-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .plan-card.featured { border-color: var(--primary); border-width: 2px; }
+    .plan-card.featured::before {
+      content: '⭐ Popular'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gradient-green); color: #fff; font-size: 0.72rem; font-weight: 700;
+      padding: 0.25rem 0.9rem; border-radius: 50px;
+    }
+    .plan-name { font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-bottom: 0.4rem; }
+    .plan-price { font-size: 2.25rem; font-weight: 900; color: var(--navy); margin-bottom: 0.15rem; }
+    .plan-price span { font-size: 0.9rem; font-weight: 500; color: var(--text-light); }
+    .plan-period { color: var(--text-light); font-size: 0.82rem; margin-bottom: 1.25rem; }
+    .plan-features { list-style: none; margin-bottom: 1.75rem; flex-grow: 1; }
+    .plan-features li { padding: 0.3rem 0; font-size: 0.85rem; color: var(--text-light); display: flex; align-items: center; gap: 0.5rem; }
+    .plan-features li::before { content: '✓'; color: var(--primary); font-weight: 700; font-size: 0.9rem; }
+    .plan-card .btn { width: 100%; justify-content: center; margin-top: auto; }
+
+    .planes-category {
+      font-size: 1.1rem; font-weight: 700; color: var(--navy);
+      margin: 2.5rem 0 1.25rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+    }
+    .ahorro-badge {
+      background: rgba(52,168,83,0.1); color: var(--primary);
+      font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 50px;
+    }
+
+    /* ===== COBERTURA ===== */
+    .cobertura-section { padding: 4rem 2rem; text-align: center; max-width: 1000px; margin: 0 auto; }
+    .cobertura-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+    .stat-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 14px; padding: 1.75rem 1.25rem; transition: transform 0.25s;
+    }
+    .stat-card:hover { transform: translateY(-3px); }
+    .stat-icon { font-size: 2.25rem; margin-bottom: 0.6rem; }
+    .stat-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
+    .stat-card p { color: var(--text-light); font-size: 0.82rem; }
+
+    .cobertura-ciudades {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 2rem; margin: 1.5rem 0;
+    }
+    .cobertura-ciudades h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 1.25rem; }
+
+    .cobertura-intl-banner {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem; margin-bottom: 1rem;
+    }
+    .intl-banner-content {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 2rem; text-align: left;
+    }
+    .intl-banner-content h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+    .intl-banner-content p { color: var(--text-light); font-size: 0.88rem; line-height: 1.6; }
+    .intl-banner-highlight {
+      background: linear-gradient(135deg, #1a3a2a 0%, #2a5a3e 100%);
+      border: 2px solid var(--accent);
+    }
+    .intl-banner-highlight h3 { color: var(--accent); }
+    .intl-banner-highlight p { color: rgba(255,255,255,0.8); }
+    .ciudades-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+    .tag {
+      background: #e8f5ec; border: 1px solid rgba(26,58,42,0.1);
+      padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.8rem; color: var(--text); transition: all 0.2s;
+    }
+    .tag:hover { border-color: var(--primary); color: var(--primary); }
+
+    .cobertura-extra { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+    .extra-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 14px; padding: 1.75rem; text-align: left;
+    }
+    .extra-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
+    .extra-card p { color: var(--text-light); font-size: 0.85rem; line-height: 1.6; }
+
+    /* ===== eSIM ===== */
+    .esim-section { padding: 4rem 2rem; display: flex; justify-content: center; }
+    .esim-full { max-width: 900px; width: 100%; }
+    .esim-header { text-align: center; margin-bottom: 1.5rem; }
+    .esim-label {
+      display: inline-block; background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.25);
+      padding: 0.35rem 0.9rem; border-radius: 50px; font-size: 0.78rem; font-weight: 600;
+      color: var(--accent); margin-bottom: 0.75rem;
+    }
+    .esim-benefits { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+    .esim-benefit {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      padding: 0.6rem 1.25rem; border-radius: 10px; font-size: 0.85rem; font-weight: 500; color: var(--text);
+    }
+    .esim-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    .esim-step {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 14px; padding: 1.75rem 1.25rem; text-align: center; transition: transform 0.25s;
+    }
+    .esim-step:hover { transform: translateY(-3px); }
+    .step-icon { font-size: 2.25rem; margin-bottom: 0.75rem; }
+    .esim-step h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .esim-step p { color: var(--text-light); font-size: 0.82rem; line-height: 1.5; }
+
+    /* ===== eSIM INTERNACIONAL ===== */
+    .esim-intl-section {
+      padding: 4rem 2rem; max-width: 1000px; margin: 0 auto;
+    }
+    .esim-intl-hero {
+      background: linear-gradient(135deg, #1a3a2a 0%, #2a5a3e 100%);
+      border-radius: 20px; padding: 3rem; text-align: center; color: #fff; margin-bottom: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .esim-intl-hero::before {
+      content: ''; position: absolute; top: -40%; right: -20%; width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .esim-intl-badge {
+      display: inline-block; background: rgba(245,166,35,0.2); border: 1px solid rgba(245,166,35,0.4);
+      padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600;
+      color: var(--accent); margin-bottom: 1rem; position: relative;
+    }
+    .esim-intl-hero h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; margin-bottom: 0.75rem; position: relative;
+    }
+    .esim-intl-hero p { color: rgba(255,255,255,0.75); font-size: 1rem; max-width: 550px; margin: 0 auto 1.5rem; position: relative; }
+    .esim-intl-highlights { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; position: relative; }
+    .intl-highlight {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      padding: 0.5rem 1.1rem; border-radius: 10px; font-size: 0.85rem; font-weight: 500;
+    }
+    .esim-intl-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem; margin-bottom: 2.5rem;
+    }
+    .intl-region-title {
+      font-size: 1.2rem; font-weight: 700; color: var(--navy);
+      margin: 2rem 0 1rem; text-align: center;
+    }
+    .intl-plans-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; margin-bottom: 1rem;
+    }
+    .intl-plan-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 14px; padding: 1.5rem 1.25rem; text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .intl-plan-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+    .intl-plan-card.intl-unlimited { border-color: var(--accent); border-width: 2px; }
+    .intl-plan-data { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.25rem; }
+    .intl-plan-days { font-size: 0.82rem; color: var(--text-light); margin-bottom: 0.75rem; }
+    .intl-plan-price { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: 1rem; }
+    .intl-plan-price span { font-size: 0.8rem; font-weight: 500; color: var(--text-light); }
+    .intl-plan-card .btn { width: 100%; justify-content: center; font-size: 0.82rem; padding: 0.55rem 1rem; }
+
+    /* ===== FAQ ===== */
+    .faq-section { padding: 4rem 2rem; max-width: 700px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--card-border); }
+    .faq-question {
+      width: 100%; background: none; border: none; color: var(--navy);
+      font-family: inherit; font-size: 0.95rem; font-weight: 600; text-align: left;
+      padding: 1.1rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-question::after { content: '+'; font-size: 1.4rem; color: var(--primary); transition: transform 0.3s; }
+    .faq-question.active::after { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-answer p { color: var(--text-light); font-size: 0.88rem; padding-bottom: 1.1rem; line-height: 1.7; }
+
+    /* ===== FOOTER ===== */
+    .footer { padding: 3rem 2rem 1.5rem; border-top: 1px solid var(--card-border); max-width: 1100px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2.5rem; }
+    .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--navy); margin-bottom: 0.75rem; }
+    .footer-col a { display: block; color: var(--text-light); text-decoration: none; font-size: 0.85rem; padding: 0.25rem 0; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-bottom { text-align: center; color: var(--text-light); font-size: 0.78rem; padding-top: 1.5rem; border-top: 1px solid var(--card-border); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .navbar-links {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(255,255,255,0.98); flex-direction: column;
+        padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid var(--card-border);
+      }
+      .navbar-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero { padding: 6.5rem 1.5rem 3rem; }
+      .recarga-card { padding: 2rem 1.5rem; }
+      .input-group { flex-direction: column; }
+      .esim-benefits { gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="navbar-logo">
+      <img src="https://app.monkeyfon.com/static/media/monkey512x512.edf0a33ad79362ccd16a.png" alt="Monkey Phone Logo">
+      <span>Monkey Phone</span>
+    </a>
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="#planes">Ofertas</a></li>
+      <li><a href="#cobertura">Cobertura</a></li>
+      <li><a href="#esim">eSIM</a></li>
+      <li><a href="#esim-intl" style="color: var(--accent); font-weight: 600;">🌍 eSIM Internacional</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://app.monkeyfon.com/Jugar" target="_blank">🎮 Jugar</a></li>
+      <li><a href="https://app.monkeyfon.com/" class="btn btn-primary">📱 Recargar</a></li>
+    </ul>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🟢 Cobertura en pueblos mágicos y zonas únicas de México</div>
+      <h1>La red con <span class="highlight">más cobertura</span> en pueblos mágicos y sitios donde nadie más llega</h1>
+      <p>Conectamos los rincones de México que otros olvidan. Planes competitivos, cobertura 4.5G y la libertad de una eSIM. Sin contratos, sin letras chiquitas.</p>
+      <div class="hero-buttons">
+        <a href="#esim" class="btn btn-primary">Contrata tu eSIM</a>
+        <a href="#planes" class="btn btn-outline">Ver Planes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECARGA -->
+  <section class="recarga-section" id="recarga">
+    <div class="recarga-card">
+      <h2>📱 Recarga y Consulta tu Saldo</h2>
+      <p>Ingresa tu número MonkeyPhone para ver tu saldo y recargar al instante.</p>
+      <div class="input-group">
+        <input type="tel" placeholder="Tu número (10 dígitos)" maxlength="10" id="phoneInput">
+        <a href="https://app.monkeyfon.com/" class="btn btn-primary" id="consultarBtn">Consultar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASHBACK BANNER -->
+  <section class="cashback-banner">
+    <div class="cashback-content">
+      <span class="cashback-badge">🔜 Próximamente</span>
+      <h2>💰 Cashback en todas tus recargas</h2>
+      <p>Muy pronto recibirás dinero de vuelta cada vez que recargues. Recarga, ahorra y repite.</p>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <section class="planes-section" id="planes">
+    <h2 class="section-title">Nuestras Ofertas</h2>
+    <p class="section-subtitle">Sin contratos ni permanencia. Elige el plan que mejor se adapte a ti.</p>
+
+    <h3 class="planes-category">📅 Planes Cortos</h3>
+    <div class="planes-grid">
+      <div class="plan-card">
+        <div class="plan-name">MonoTalk</div>
+        <div class="plan-price">$70 <span>MXN</span></div>
+        <div class="plan-period">3 días</div>
+        <ul class="plan-features">
+          <li>2 GB de datos</li>
+          <li>375 Minutos</li>
+          <li>125 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Banana Basic</div>
+        <div class="plan-price">$85 <span>MXN</span></div>
+        <div class="plan-period">7 días</div>
+        <ul class="plan-features">
+          <li>3 GB de datos</li>
+          <li>750 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+    </div>
+
+    <h3 class="planes-category">📅 Planes Mensuales</h3>
+    <div class="planes-grid">
+      <div class="plan-card">
+        <div class="plan-name">Jungle Go+</div>
+        <div class="plan-price">$175 <span>MXN</span></div>
+        <div class="plan-period">30 días</div>
+        <ul class="plan-features">
+          <li>5 GB de datos</li>
+          <li>7,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Jungle Boost</div>
+        <div class="plan-price">$200 <span>MXN</span></div>
+        <div class="plan-period">30 días</div>
+        <ul class="plan-features">
+          <li>12 GB de datos</li>
+          <li>Minutos ilimitados</li>
+          <li>3,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-name">Jungle Boost Lite</div>
+        <div class="plan-price">$255 <span>MXN</span></div>
+        <div class="plan-period">30 días</div>
+        <ul class="plan-features">
+          <li>15 GB de datos</li>
+          <li>Minutos ilimitados</li>
+          <li>1,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-primary">Contratar</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Tree Top</div>
+        <div class="plan-price">$289 <span>MXN</span></div>
+        <div class="plan-period">30 días</div>
+        <ul class="plan-features">
+          <li>24 GB de datos</li>
+          <li>1,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Tree Top +</div>
+        <div class="plan-price">$350 <span>MXN</span></div>
+        <div class="plan-period">30 días</div>
+        <ul class="plan-features">
+          <li>35 GB de datos</li>
+          <li>3,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Alpha Ape Pro</div>
+        <div class="plan-price">$629 <span>MXN</span></div>
+        <div class="plan-period">30 días</div>
+        <ul class="plan-features">
+          <li>50 GB de datos</li>
+          <li>10,000 Minutos</li>
+          <li>10,000 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+    </div>
+
+    <h3 class="planes-category">💰 Planes Semestrales y Anuales <span class="ahorro-badge">Ahorra más</span></h3>
+    <div class="planes-grid">
+      <div class="plan-card">
+        <div class="plan-name">Jungle Boost Lite Semestral</div>
+        <div class="plan-price">$1,350 <span>MXN</span></div>
+        <div class="plan-period">6 meses</div>
+        <ul class="plan-features">
+          <li>15 GB de datos / mes</li>
+          <li>Minutos ilimitados</li>
+          <li>1,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Tree Top+ Semestral</div>
+        <div class="plan-price">$2,100 <span>MXN</span></div>
+        <div class="plan-period">6 meses</div>
+        <ul class="plan-features">
+          <li>20 GB de datos / mes</li>
+          <li>1,500 SMS</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Jungle Go+ Anual</div>
+        <div class="plan-price">$2,000 <span>MXN</span></div>
+        <div class="plan-period">12 meses</div>
+        <ul class="plan-features">
+          <li>5 GB de datos / mes</li>
+          <li>1,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Tree Top Anual</div>
+        <div class="plan-price">$3,200 <span>MXN</span></div>
+        <div class="plan-period">12 meses</div>
+        <ul class="plan-features">
+          <li>20 GB de datos / mes</li>
+          <li>1,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Contratar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COBERTURA -->
+  <section class="cobertura-section" id="cobertura">
+    <h2 class="section-title">📡 Cobertura</h2>
+    <p class="section-subtitle">Conectamos México, Estados Unidos, Canadá y más de 200 destinos internacionales.</p>
+
+    <!-- Roaming USA y Canadá + Internacional DESTACADO -->
+    <div class="cobertura-intl-banner">
+      <div class="intl-banner-content">
+        <h3>🌎 Roaming incluido en USA y Canadá</h3>
+        <p>Todos nuestros planes incluyen roaming en Estados Unidos y Canadá sin costo extra. Cruza la frontera y sigue conectado.</p>
+      </div>
+      <div class="intl-banner-content intl-banner-highlight">
+        <h3>✈️ eSIM Internacional — +200 destinos</h3>
+        <p>¿Viajas más lejos? Compra tu eSIM Internacional y navega en Europa, Asia y el mundo entero. Sin cambiar de chip.</p>
+        <a href="#esim-intl" class="btn btn-primary" style="margin-top:0.75rem;">Ver planes internacionales →</a>
+      </div>
+    </div>
+
+    <!-- Cobertura nacional -->
+    <h3 style="text-align:center; margin: 2.5rem 0 1.5rem; font-size: 1.3rem; color: var(--navy);">🇲🇽 Cobertura Nacional</h3>
+    <div class="cobertura-stats">
+      <div class="stat-card">
+        <div class="stat-icon">�️</div>
+        <h3>Pueblos Mágicos</h3>
+        <p>Cobertura donde otros operadores no llegan</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏙️</div>
+        <h3>+50 ciudades</h3>
+        <p>Principales zonas urbanas del país</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📶</div>
+        <h3>4G LTE</h3>
+        <p>Velocidad de datos de alta velocidad</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🗺️</div>
+        <h3>Creciendo</h3>
+        <p>Expandimos cobertura constantemente</p>
+      </div>
+    </div>
+
+    <div class="cobertura-ciudades">
+      <h3>Principales zonas con cobertura</h3>
+      <div class="ciudades-tags">
+        <span class="tag">CDMX</span><span class="tag">Estado de México</span><span class="tag">Guadalajara</span>
+        <span class="tag">Monterrey</span><span class="tag">Puebla</span><span class="tag">Querétaro</span>
+        <span class="tag">Tijuana</span><span class="tag">León</span><span class="tag">Mérida</span>
+        <span class="tag">Cancún</span><span class="tag">Toluca</span><span class="tag">Aguascalientes</span>
+        <span class="tag">San Luis Potosí</span><span class="tag">Chihuahua</span><span class="tag">Morelia</span>
+        <span class="tag">Veracruz</span><span class="tag">Oaxaca</span><span class="tag">Villahermosa</span>
+        <span class="tag">Tuxtla Gutiérrez</span><span class="tag">Pachuca</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- eSIM NACIONAL -->
+  <section class="esim-section" id="esim">
+    <div class="esim-full">
+      <div class="esim-header">
+        <span class="esim-label">eSIM MonkeyPhone</span>
+        <h2 class="section-title">Tu línea móvil sin chip físico</h2>
+        <p class="section-subtitle">Activa tu eSIM MonkeyPhone en minutos. Sin tiendas, sin esperas, directo a tu correo.</p>
+      </div>
+      <div class="esim-benefits">
+        <div class="esim-benefit">📱 Sin chip físico</div>
+        <div class="esim-benefit">📧 Recíbela por correo</div>
+        <div class="esim-benefit">🔄 Porta tu número</div>
+      </div>
+      <h3 style="text-align:center; margin: 2.5rem 0 1.5rem; font-size: 1.3rem; color: var(--navy);">¿Cómo funciona?</h3>
+      <div class="esim-steps">
+        <div class="esim-step">
+          <div class="step-icon">📱</div>
+          <h4>1. Verifica tu dispositivo</h4>
+          <p>Busca tu modelo para confirmar compatibilidad con eSIM.</p>
+        </div>
+        <div class="esim-step">
+          <div class="step-icon">📧</div>
+          <h4>2. Ingresa tu correo</h4>
+          <p>Te enviaremos el QR de tu eSIM para que la instales.</p>
+        </div>
+        <div class="esim-step">
+          <div class="step-icon">✅</div>
+          <h4>3. Activa y listo</h4>
+          <p>Escanea el QR desde tu teléfono y empieza a navegar.</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: 2rem;">
+        <a href="https://app.monkeyfon.com/esim" class="btn btn-primary">Consulta tu Dispositivo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- eSIM INTERNACIONAL (DESTACADA) -->
+  <section class="esim-intl-section" id="esim-intl">
+    <div class="esim-intl-hero">
+      <span class="esim-intl-badge">🌍 eSIM Internacional</span>
+      <h2>Viaja conectado al mundo entero</h2>
+      <p>Compra tu eSIM internacional y navega en más de 200 destinos. Sin cambiar de chip, sin roaming, sin complicaciones.</p>
+      <div class="esim-intl-highlights">
+        <div class="intl-highlight">🌍 +200 destinos</div>
+        <div class="intl-highlight">⚡ Activa en minutos</div>
+        <div class="intl-highlight">💰 Sin cargos ocultos</div>
+      </div>
+    </div>
+
+    <div class="esim-intl-steps">
+      <div class="esim-step">
+        <div class="step-icon">📱</div>
+        <h4>1. Verifica tu dispositivo</h4>
+        <p>Confirma que es compatible con eSIM.</p>
+      </div>
+      <div class="esim-step">
+        <div class="step-icon">🛒</div>
+        <h4>2. Elige tu plan</h4>
+        <p>Selecciona el paquete ideal para tu viaje.</p>
+      </div>
+      <div class="esim-step">
+        <div class="step-icon">✈️</div>
+        <h4>3. Conéctate y viaja</h4>
+        <p>Recibe tu eSIM por correo, instálala y listo.</p>
+      </div>
+    </div>
+
+    <!-- Planes Europa -->
+    <h3 class="intl-region-title">🇪🇺 Europa</h3>
+    <div class="intl-plans-grid">
+      <div class="intl-plan-card">
+        <div class="intl-plan-data">📶 20 GB</div>
+        <div class="intl-plan-days">⏱ 30 días</div>
+        <div class="intl-plan-price">$980 <span>MXN</span></div>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+      <div class="intl-plan-card">
+        <div class="intl-plan-data">📶 50 GB</div>
+        <div class="intl-plan-days">⏱ 30 días</div>
+        <div class="intl-plan-price">$1,980 <span>MXN</span></div>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+      <div class="intl-plan-card">
+        <div class="intl-plan-data">📶 50 GB</div>
+        <div class="intl-plan-days">⏱ 90 días</div>
+        <div class="intl-plan-price">$2,000 <span>MXN</span></div>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+      <div class="intl-plan-card">
+        <div class="intl-plan-data">📶 100 GB</div>
+        <div class="intl-plan-days">⏱ 180 días</div>
+        <div class="intl-plan-price">$3,700 <span>MXN</span></div>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+      <div class="intl-plan-card intl-unlimited">
+        <div class="intl-plan-data">📶 Ilimitado</div>
+        <div class="intl-plan-days">⏱ 10 días</div>
+        <div class="intl-plan-price">$700 <span>MXN</span></div>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+    </div>
+
+    <!-- Planes Asia -->
+    <h3 class="intl-region-title">🌏 Asia</h3>
+    <div class="intl-plans-grid">
+      <div class="intl-plan-card">
+        <div class="intl-plan-data">📶 10 GB</div>
+        <div class="intl-plan-days">⏱ 30 días</div>
+        <div class="intl-plan-price">$500 <span>MXN</span></div>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+      <div class="intl-plan-card intl-unlimited">
+        <div class="intl-plan-data">📶 Ilimitado</div>
+        <div class="intl-plan-days">⏱ 15 días</div>
+        <div class="intl-plan-price">$980 <span>MXN</span></div>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+    </div>
+
+    <!-- Planes Global -->
+    <h3 class="intl-region-title">🌐 Global</h3>
+    <div class="intl-plans-grid">
+      <div class="intl-plan-card">
+        <div class="intl-plan-data">📶 10 GB</div>
+        <div class="intl-plan-days">⏱ 180 días</div>
+        <div class="intl-plan-price">$1,580 <span>MXN</span></div>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+      <div class="intl-plan-card">
+        <div class="intl-plan-data">📶 20 GB</div>
+        <div class="intl-plan-days">⏱ 365 días</div>
+        <div class="intl-plan-price">$1,780 <span>MXN</span></div>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <h2 class="section-title" style="text-align:center; margin-bottom: 2rem;">Preguntas Frecuentes</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">¿Qué es MonkeyPhone?</button>
+      <div class="faq-answer"><p>MonkeyPhone es un operador móvil virtual (OMV) en México que ofrece planes de telefonía con la red 4.5G más avanzada del país, sin contratos ni permanencia.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">¿Cómo activo mi eSIM?</button>
+      <div class="faq-answer"><p>Contrata tu plan en nuestra página, recibirás un código QR por correo electrónico. Escanéalo desde los ajustes de tu celular y tu línea estará activa en minutos.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">¿Qué cobertura tiene MonkeyPhone?</button>
+      <div class="faq-answer"><p>Utilizamos la red 4.5G con cobertura en las principales ciudades y zonas metropolitanas de México. Consulta nuestro mapa de cobertura para más detalles.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">¿Puedo conservar mi número?</button>
+      <div class="faq-answer"><p>Sí, puedes portar tu número actual a MonkeyPhone sin costo adicional. El proceso toma entre 24 y 72 horas hábiles.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">¿Cómo recargo mi saldo?</button>
+      <div class="faq-answer"><p>Ingresa a app.monkeyfon.com, escribe tu número y podrás recargar al instante con tarjeta de débito o crédito.</p></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Monkey Phone</h4>
+        <a href="#">Inicio</a>
+        <a href="#planes">Planes</a>
+        <a href="#esim">Contrata eSIM</a>
+        <a href="#cobertura">Cobertura</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cuenta</h4>
+        <a href="https://app.monkeyfon.com/">Recarga tu Saldo</a>
+        <a href="https://recargas.monkeyfon.com/">Login</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://www.monkeyphone.net/legales">Documentos Legales</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div class="footer-col">
+        <h4>Soporte</h4>
+        <a href="#faq">Preguntas Frecuentes</a>
+        <a href="#">Contacto</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Monkey Phone by Monkey Inc. Todos los derechos reservados.</div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('active');
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.classList.remove('active');
+        q.nextElementSibling.style.maxHeight = null;
+      });
+      if (!isOpen) {
+        btn.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+    document.getElementById('consultarBtn').addEventListener('click', function(e) {
+      const phone = document.getElementById('phoneInput').value.trim();
+      if (phone.length === 10) { this.href = 'https://app.monkeyfon.com/?phone=' + phone; }
+    });
+  </script>
+</body>
+</html>

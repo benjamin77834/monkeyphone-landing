@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monkey Phone | Soluciones Corporativas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #34A853;
+      --accent: #F5A623;
+      --navy: #1a3a2a;
+      --bg: #f0f7f2;
+      --text: #1a3a2a;
+      --text-light: #5a7d68;
+      --card-bg: #ffffff;
+      --card-border: rgba(26,58,42,0.08);
+      --gradient-green: linear-gradient(135deg, #34A853 0%, #43b864 100%);
+      --gradient-accent: linear-gradient(135deg, #F5A623 0%, #F7C948 100%);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden;
+    }
+
+    /* NAV */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0.75rem 2rem; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .navbar-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .navbar-logo img { width: 44px; height: 44px; border-radius: 10px; }
+    .navbar-logo span { font-size: 1.2rem; font-weight: 800; color: var(--navy); }
+    .navbar-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+    .navbar-links a { color: var(--text-light); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .navbar-links a:hover { color: var(--navy); }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.3rem; border-radius: 10px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; }
+    .btn-primary { background: var(--gradient-green); color: #fff; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(52,168,83,0.3); }
+    .btn-accent { background: var(--gradient-accent); color: var(--navy); }
+    .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,166,35,0.3); }
+    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--card-border); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { width: 22px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 7rem 2rem 4rem;
+      background: linear-gradient(180deg, #e8f5ec 0%, var(--bg) 100%);
+    }
+    .hero-content { max-width: 850px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(52,168,83,0.08); border: 1px solid rgba(52,168,83,0.2);
+      padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 500;
+      color: var(--primary); margin-bottom: 1.5rem;
+    }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.25rem; color: var(--navy); }
+    .hero h1 .highlight { background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.1rem; color: var(--text-light); max-width: 620px; margin: 0 auto 2.5rem; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* SECTIONS */
+    .section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
+    .section-title { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; text-align: center; }
+    .section-subtitle { color: var(--text-light); font-size: 0.95rem; max-width: 550px; margin: 0 auto 2.5rem; text-align: center; }
+
+    /* SERVICIOS GRID */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+    .service-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 2rem 1.75rem; transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    .service-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .service-card p { color: var(--text-light); font-size: 0.85rem; line-height: 1.6; }
+
+    /* DISPOSITIVOS */
+    .devices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    .device-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 2rem; text-align: center; transition: transform 0.25s;
+    }
+    .device-card:hover { transform: translateY(-3px); }
+    .device-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+    .device-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
+    .device-card p { color: var(--text-light); font-size: 0.82rem; }
+
+    /* ROAMING / INTERNACIONAL */
+    .roaming-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a5a3e 100%);
+      border-radius: 20px; padding: 3rem; color: #fff; text-align: center;
+      margin-bottom: 2rem; position: relative; overflow: hidden;
+    }
+    .roaming-banner::before {
+      content: ''; position: absolute; top: -40%; right: -15%; width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%); border-radius: 50%;
+    }
+    .roaming-banner h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 0.75rem; position: relative; }
+    .roaming-banner p { color: rgba(255,255,255,0.8); font-size: 1rem; max-width: 600px; margin: 0 auto 1.5rem; position: relative; }
+    .roaming-countries { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; position: relative; }
+    .country-tag {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.6rem 1.25rem; border-radius: 10px; font-size: 0.9rem; font-weight: 600;
+    }
+
+    /* PLANES CORP */
+    .planes-corp { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .plan-corp-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 2rem 1.75rem; display: flex; flex-direction: column;
+    }
+    .plan-corp-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    .plan-corp-card.featured { border: 2px solid var(--primary); }
+    .plan-corp-name { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 0.3rem; }
+    .plan-corp-price { font-size: 2rem; font-weight: 900; color: var(--navy); }
+    .plan-corp-price span { font-size: 0.85rem; font-weight: 500; color: var(--text-light); }
+    .plan-corp-period { color: var(--text-light); font-size: 0.8rem; margin-bottom: 1rem; }
+    .plan-corp-features { list-style: none; margin-bottom: 1.5rem; flex-grow: 1; }
+    .plan-corp-features li { padding: 0.3rem 0; font-size: 0.82rem; color: var(--text-light); display: flex; align-items: center; gap: 0.5rem; }
+    .plan-corp-features li::before { content: '✓'; color: var(--primary); font-weight: 700; }
+    .plan-corp-card .btn { width: 100%; justify-content: center; margin-top: auto; }
+
+    /* BENEFICIOS */
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .benefit-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 14px; padding: 1.5rem; text-align: center;
+    }
+    .benefit-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .benefit-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 0.25rem; }
+    .benefit-card p { color: var(--text-light); font-size: 0.78rem; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--gradient-accent); border-radius: 20px; padding: 3rem;
+      text-align: center; margin: 2rem auto; max-width: 1000px;
+    }
+    .cta-section h2 { font-size: 1.6rem; font-weight: 900; color: var(--navy); margin-bottom: 0.5rem; }
+    .cta-section p { color: rgba(26,58,42,0.7); margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    .footer { padding: 3rem 2rem 1.5rem; border-top: 1px solid var(--card-border); max-width: 1000px; margin: 0 auto; }
+    .footer-bottom { text-align: center; color: var(--text-light); font-size: 0.78rem; padding-top: 1.5rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .navbar-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid var(--card-border); }
+      .navbar-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero { padding: 6rem 1.5rem 3rem; }
+      .roaming-countries { gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <a href="#" class="navbar-logo">
+      <img src="https://app.monkeyfon.com/static/media/monkey512x512.edf0a33ad79362ccd16a.png" alt="Monkey Phone">
+      <span>Monkey Phone</span>
+    </a>
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#dispositivos">Dispositivos</a></li>
+      <li><a href="#roaming">Roaming</a></li>
+      <li><a href="#planes">Planes</a></li>
+      <li><a href="#contacto" class="btn btn-primary">Contactar</a></li>
+    </ul>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🏢 Soluciones Corporativas</div>
+      <h1>Conectividad <span class="highlight">empresarial</span> sin fronteras</h1>
+      <p>Telefonía móvil, dispositivos, eSIM internacional y cobertura en México, Estados Unidos, Colombia y España. Todo para mantener a tu equipo conectado donde sea.</p>
+      <div class="hero-buttons">
+        <a href="#contacto" class="btn btn-primary">Solicitar cotización</a>
+        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="section" id="servicios">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-subtitle">Soluciones integrales de telecomunicaciones para empresas de todos los tamaños.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Líneas Móviles Corporativas</h3>
+        <p>Planes de voz, datos y SMS para tu equipo de trabajo. Sin contratos de permanencia, con la red 4.5G de mayor cobertura en México, incluyendo pueblos mágicos.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌍</div>
+        <h3>eSIM Internacional</h3>
+        <p>Conectividad en más de 200 destinos. Ideal para empleados que viajan a Estados Unidos, Colombia, España y más. Sin roaming, sin sorpresas en la factura.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📡</div>
+        <h3>Roaming USA y Canadá</h3>
+        <p>Todos nuestros planes incluyen roaming en Estados Unidos y Canadá sin costo extra. Cruza la frontera y sigue trabajando sin interrupciones.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Venta de Dispositivos</h3>
+        <p>Smartphones, tablets iPad y equipos móviles a precios corporativos. Entrega directa a tu empresa con configuración incluida.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <h3>Portabilidad Numérica</h3>
+        <p>Migra las líneas de tu empresa sin perder los números. Proceso rápido de 24 a 72 horas sin afectar la operación.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Administración de Líneas</h3>
+        <p>Panel de control para gestionar las líneas de tu empresa. Consulta saldos, recargas y consumo de cada empleado desde un solo lugar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISPOSITIVOS -->
+  <section class="section" id="dispositivos">
+    <h2 class="section-title">Dispositivos Disponibles</h2>
+    <p class="section-subtitle">Equipos de las mejores marcas a precios corporativos.</p>
+    <div class="devices-grid">
+      <div class="device-card">
+        <div class="device-icon">📱</div>
+        <h3>Smartphones</h3>
+        <p>iPhone, Samsung, Xiaomi, Motorola y más. Equipos nuevos y reacondicionados.</p>
+      </div>
+      <div class="device-card">
+        <div class="device-icon">📲</div>
+        <h3>iPad y Tablets</h3>
+        <p>iPad Air, iPad Pro y tablets Android para tu equipo de trabajo y ventas en campo.</p>
+      </div>
+      <div class="device-card">
+        <div class="device-icon">💻</div>
+        <h3>Laptops</h3>
+        <p>MacBook, Dell, Lenovo y HP. Equipos para oficina y trabajo remoto.</p>
+      </div>
+      <div class="device-card">
+        <div class="device-icon">🎧</div>
+        <h3>Accesorios</h3>
+        <p>Audífonos, cargadores, fundas y protectores. Todo lo que tu equipo necesita.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROAMING INTERNACIONAL -->
+  <section class="section" id="roaming">
+    <div class="roaming-banner">
+      <h2>🌎 Conectividad Internacional para tu Empresa</h2>
+      <p>Tus empleados viajan, tu conectividad también. Cobertura en los destinos más importantes para negocios en Latinoamérica y Europa.</p>
+      <div class="roaming-countries">
+        <div class="country-tag">🇺🇸 Estados Unidos</div>
+        <div class="country-tag">🇨🇦 Canadá</div>
+        <div class="country-tag">🇨🇴 Colombia</div>
+        <div class="country-tag">🇪🇸 España</div>
+        <div class="country-tag">🌍 +200 destinos</div>
+      </div>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🇺🇸</div>
+        <h4>USA y Canadá incluido</h4>
+        <p>Roaming sin costo extra en todos los planes</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🇨🇴</div>
+        <h4>Colombia</h4>
+        <p>eSIM internacional con datos para tus desplazamientos</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🇪🇸</div>
+        <h4>España y Europa</h4>
+        <p>Planes desde 20 GB con cobertura en toda la UE</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⚡</div>
+        <h4>Activación inmediata</h4>
+        <p>eSIM digital, sin esperas ni chips físicos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANES CORPORATIVOS -->
+  <section class="section" id="planes">
+    <h2 class="section-title">Planes Corporativos</h2>
+    <p class="section-subtitle">Planes nacionales e internacionales para tu equipo de trabajo.</p>
+
+    <h3 style="text-align:center; font-size:1rem; font-weight:700; color:var(--navy); margin-bottom:1.25rem;">🇲🇽 Planes Nacionales</h3>
+    <div class="planes-corp">
+      <div class="plan-corp-card">
+        <div class="plan-corp-name">Jungle Boost</div>
+        <div class="plan-corp-price">$200 <span>MXN</span></div>
+        <div class="plan-corp-period">30 días por línea</div>
+        <ul class="plan-corp-features">
+          <li>12 GB de datos</li>
+          <li>Minutos ilimitados</li>
+          <li>3,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+          <li>Roaming USA y Canadá</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Cotizar</a>
+      </div>
+      <div class="plan-corp-card featured">
+        <div class="plan-corp-name">Jungle Boost Lite</div>
+        <div class="plan-corp-price">$255 <span>MXN</span></div>
+        <div class="plan-corp-period">30 días por línea</div>
+        <ul class="plan-corp-features">
+          <li>15 GB de datos</li>
+          <li>Minutos ilimitados</li>
+          <li>1,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+          <li>Roaming USA y Canadá</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-primary">Cotizar</a>
+      </div>
+      <div class="plan-corp-card">
+        <div class="plan-corp-name">Tree Top +</div>
+        <div class="plan-corp-price">$350 <span>MXN</span></div>
+        <div class="plan-corp-period">30 días por línea</div>
+        <ul class="plan-corp-features">
+          <li>35 GB de datos</li>
+          <li>3,500 SMS</li>
+          <li>Redes Sociales</li>
+          <li>HotSpot</li>
+          <li>Roaming USA y Canadá</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/" class="btn btn-outline">Cotizar</a>
+      </div>
+    </div>
+
+    <h3 style="text-align:center; font-size:1rem; font-weight:700; color:var(--navy); margin: 2.5rem 0 1.25rem;">🌍 eSIM Internacional para Viajes de Negocio</h3>
+    <div class="planes-corp">
+      <div class="plan-corp-card">
+        <div class="plan-corp-name">Europa / España</div>
+        <div class="plan-corp-price">$980 <span>MXN</span></div>
+        <div class="plan-corp-period">20 GB · 30 días</div>
+        <ul class="plan-corp-features">
+          <li>Cobertura en toda la UE</li>
+          <li>Activación por QR</li>
+          <li>Sin roaming</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-outline">Comprar</a>
+      </div>
+      <div class="plan-corp-card">
+        <div class="plan-corp-name">Europa / España</div>
+        <div class="plan-corp-price">$1,980 <span>MXN</span></div>
+        <div class="plan-corp-period">50 GB · 30 días</div>
+        <ul class="plan-corp-features">
+          <li>Cobertura en toda la UE</li>
+          <li>Ideal para estancias largas</li>
+          <li>Activación inmediata</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-outline">Comprar</a>
+      </div>
+      <div class="plan-corp-card">
+        <div class="plan-corp-name">Global (Colombia y más)</div>
+        <div class="plan-corp-price">$1,780 <span>MXN</span></div>
+        <div class="plan-corp-period">20 GB · 365 días</div>
+        <ul class="plan-corp-features">
+          <li>+200 destinos incluidos</li>
+          <li>Colombia, Latam, Europa</li>
+          <li>Vigencia de 1 año</li>
+        </ul>
+        <a href="https://app.monkeyfon.com/Ofertasinternacional" class="btn btn-primary">Comprar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS CORPORATIVOS -->
+  <section class="section">
+    <h2 class="section-title">¿Por qué Monkey Phone para tu empresa?</h2>
+    <p class="section-subtitle">Más que un operador, un aliado tecnológico para tu negocio.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <h4>Precios competitivos</h4>
+        <p>Hasta 40% menos que operadores tradicionales</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📋</div>
+        <h4>Sin contratos</h4>
+        <p>Sin permanencia ni penalizaciones</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🏘️</div>
+        <h4>Cobertura única</h4>
+        <p>Pueblos mágicos y zonas donde nadie más llega</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🌎</div>
+        <h4>Roaming incluido</h4>
+        <p>USA y Canadá sin costo extra</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📱</div>
+        <h4>Dispositivos</h4>
+        <p>Venta de equipos a precio corporativo</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎧</div>
+        <h4>Soporte dedicado</h4>
+        <p>Atención personalizada para empresas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" id="contacto">
+    <div class="cta-section">
+      <h2>¿Listo para conectar a tu empresa?</h2>
+      <p>Contáctanos para una cotización personalizada. Planes a la medida de tu negocio.</p>
+      <div class="cta-buttons">
+        <a href="https://app.monkeyfon.com/" class="btn btn-primary">📱 Ir a la App</a>
+        <a href="https://www.monkeyphone.net/" class="btn btn-outline" style="background:#fff;">🌐 Visitar sitio web</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      © 2026 Monkey Phone by Monkey Inc. Todos los derechos reservados.<br>
+      <a href="https://www.monkeyphone.net/" style="color:var(--primary); text-decoration:none;">monkeyphone.net</a> · 
+      <a href="https://app.monkeyfon.com/" style="color:var(--primary); text-decoration:none;">app.monkeyfon.com</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('navLinks')?.addEventListener('click', function() { this.classList.remove('open'); });
+  </script>
+</body>
+</html>

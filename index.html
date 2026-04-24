@@ -74,21 +74,23 @@
     /* ===== SUBNAV ===== */
     .subnav {
       position: fixed; top: 62px; left: 0; right: 0; z-index: 999;
-      background: var(--navy); border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, #1a3a2a 0%, #2a5a3e 100%);
+      box-shadow: 0 4px 15px rgba(26,58,42,0.2);
     }
     .subnav-inner {
-      display: flex; justify-content: center; gap: 0; max-width: 600px; margin: 0 auto;
+      display: flex; justify-content: center; gap: 0; max-width: 700px; margin: 0 auto;
     }
     .subnav-tab {
-      flex: 1; text-align: center; padding: 0.7rem 1.5rem;
-      color: rgba(255,255,255,0.6); text-decoration: none;
-      font-size: 0.85rem; font-weight: 600; transition: all 0.25s;
-      border-bottom: 3px solid transparent;
+      flex: 1; text-align: center; padding: 1.1rem 2rem;
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.02em;
+      transition: all 0.25s;
+      border-bottom: 4px solid transparent;
     }
-    .subnav-tab:hover { color: #fff; }
+    .subnav-tab:hover { color: #fff; background: rgba(255,255,255,0.05); }
     .subnav-tab.active {
       color: #fff; border-bottom-color: var(--accent);
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.1);
     }
 
     /* ===== TAB CONTENT ===== */
@@ -98,7 +100,7 @@
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 9rem 2rem 4rem;
+      text-align: center; padding: 10rem 2rem 4rem;
       background: linear-gradient(180deg, #e8f5ec 0%, var(--bg) 100%);
     }
     .hero-content { max-width: 800px; }
@@ -329,7 +331,7 @@
 
     /* ===== CARRUSEL DE PAÍSES ===== */
     .countries-carousel-wrapper {
-      position: fixed; top: 102px; left: 0; right: 0; z-index: 998;
+      position: fixed; top: 118px; left: 0; right: 0; z-index: 998;
       overflow: hidden; padding: 0.75rem 0; background: #e8f0ea;
       border-bottom: 1px solid var(--card-border);
     }
@@ -493,8 +495,8 @@
       }
       .navbar-links.open { display: flex; }
       .hamburger { display: flex; }
-      .hero { padding: 8.5rem 1.5rem 3rem; }
-      .subnav-tab { font-size: 0.78rem; padding: 0.6rem 0.75rem; }
+      .hero { padding: 9rem 1.5rem 3rem; }
+      .subnav-tab { font-size: 0.88rem; padding: 0.9rem 1rem; }
       .recarga-card { padding: 2rem 1.5rem; }
       .input-group { flex-direction: column; }
       .esim-benefits { gap: 0.5rem; }
@@ -1170,12 +1172,12 @@
         document.getElementById('heroNacional').style.display = 'none';
         document.getElementById('heroIntl').style.display = 'block';
         countriesBar.style.display = 'block';
-        heroSection.style.paddingTop = '13rem';
+        heroSection.style.paddingTop = '15rem';
       } else {
         document.getElementById('heroNacional').style.display = 'block';
         document.getElementById('heroIntl').style.display = 'none';
         countriesBar.style.display = 'none';
-        heroSection.style.paddingTop = '9rem';
+        heroSection.style.paddingTop = '10rem';
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });

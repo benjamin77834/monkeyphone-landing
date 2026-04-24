@@ -1041,13 +1041,21 @@
       <button class="faq-question" onclick="toggleFaq(this)">¿Qué cobertura tiene MonkeyPhone?</button>
       <div class="faq-answer"><p>Utilizamos la red 4.5G con cobertura en las principales ciudades y zonas metropolitanas de México. Consulta nuestro mapa de cobertura para más detalles.</p></div>
     </div>
-    <div class="faq-item">
+    <div class="faq-item faq-nacional-only">
       <button class="faq-question" onclick="toggleFaq(this)">¿Puedo conservar mi número?</button>
       <div class="faq-answer"><p>Sí, puedes portar tu número actual a MonkeyPhone sin costo adicional. El proceso toma entre 24 y 72 horas hábiles.</p></div>
     </div>
-    <div class="faq-item">
+    <div class="faq-item faq-nacional-only">
       <button class="faq-question" onclick="toggleFaq(this)">¿Cómo recargo mi saldo?</button>
       <div class="faq-answer"><p>Ingresa a app.monkeyfon.com, escribe tu número y podrás recargar al instante con tarjeta de débito o crédito.</p></div>
+    </div>
+    <div class="faq-item faq-intl-only" style="display:none;">
+      <button class="faq-question" onclick="toggleFaq(this)">¿En qué países funciona la eSIM Internacional?</button>
+      <div class="faq-answer"><p>Funciona en más de 200 destinos incluyendo Estados Unidos, Canadá, España, Francia, Alemania, Italia, Colombia, Brasil, Japón, Australia y muchos más.</p></div>
+    </div>
+    <div class="faq-item faq-intl-only" style="display:none;">
+      <button class="faq-question" onclick="toggleFaq(this)">¿Cómo instalo la eSIM Internacional?</button>
+      <div class="faq-answer"><p>Después de comprar tu plan, recibirás un código QR por correo. Escanéalo desde los ajustes de tu celular antes o durante tu viaje y estarás conectado al instante.</p></div>
     </div>
   </section>
 
@@ -1123,6 +1131,14 @@
         heroSection.style.paddingTop = isMobile ? '2rem' : '10rem';
         heroSection.style.minHeight = isMobile ? 'auto' : '100vh';
       }
+
+      // FAQ según tab
+      document.querySelectorAll('.faq-nacional-only').forEach(function(el) {
+        el.style.display = tab === 'nacional' ? 'block' : 'none';
+      });
+      document.querySelectorAll('.faq-intl-only').forEach(function(el) {
+        el.style.display = tab === 'internacional' ? 'block' : 'none';
+      });
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
       // Fallback para iOS

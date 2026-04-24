@@ -499,11 +499,24 @@
       }
       .navbar-links.open { display: flex; }
       .hamburger { display: flex; }
-      .hero { padding: 9rem 1.5rem 3rem; }
-      .subnav-tab { font-size: 0.88rem; padding: 0.9rem 1rem; }
+      .hero { padding: 10rem 1.5rem 3rem; min-height: auto; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .subnav { height: 52px; }
+      .subnav-tab { font-size: 0.78rem; letter-spacing: 0; white-space: nowrap; }
+      .countries-carousel-wrapper { position: relative !important; top: auto !important; margin-top: 0; }
+      .country-card { width: 110px; min-width: 110px; height: 110px; }
       .recarga-card { padding: 2rem 1.5rem; }
       .input-group { flex-direction: column; }
       .esim-benefits { gap: 0.5rem; }
+      .carousel-card { padding: 2rem 1.5rem; }
+      .carousel-card h4 { font-size: 1.1rem; }
+      .carousel-card p { font-size: 0.9rem; }
+      .carousel-icon { font-size: 3rem; }
+      .carousel-btn { width: 38px; height: 38px; font-size: 1.2rem; }
+      .intl-plans-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+      .planes-grid { grid-template-columns: 1fr; }
+      .cobertura-stats { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -1092,12 +1105,13 @@
         document.getElementById('heroNacional').style.display = 'none';
         document.getElementById('heroIntl').style.display = 'block';
         countriesBar.style.display = 'block';
-        heroSection.style.paddingTop = '15rem';
+        var isMobile = window.innerWidth <= 768;
+        heroSection.style.paddingTop = isMobile ? '8rem' : '15rem';
       } else {
         document.getElementById('heroNacional').style.display = 'block';
         document.getElementById('heroIntl').style.display = 'none';
         countriesBar.style.display = 'none';
-        heroSection.style.paddingTop = '10rem';
+        heroSection.style.paddingTop = window.innerWidth <= 768 ? '10rem' : '10rem';
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });

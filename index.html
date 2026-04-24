@@ -65,6 +65,8 @@
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(52,168,83,0.35); }
     .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--card-border); }
     .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-accent { background: var(--gradient-accent); color: var(--navy); }
+    .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,166,35,0.3); }
 
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: 0.3s; }
@@ -500,14 +502,24 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
+  <section class="hero" id="heroSection">
+    <!-- Hero Nacional -->
+    <div class="hero-content hero-nacional" id="heroNacional">
       <div class="hero-badge">🟢 Cobertura en pueblos mágicos y zonas únicas de México</div>
       <h1>La red con <span class="highlight">más cobertura</span> en pueblos mágicos y sitios donde nadie más llega</h1>
       <p>Conectamos los rincones de México que otros olvidan. Planes competitivos, cobertura 4.5G y la libertad de una eSIM. Sin contratos, sin letras chiquitas.</p>
       <div class="hero-buttons">
         <a href="#esim" class="btn btn-primary">Contrata tu eSIM</a>
         <a href="#planes" class="btn btn-outline">Ver Planes</a>
+      </div>
+    </div>
+    <!-- Hero Internacional -->
+    <div class="hero-content hero-intl" id="heroIntl" style="display:none;">
+      <div class="hero-badge" style="background:rgba(245,166,35,0.1); border-color:rgba(245,166,35,0.25); color:var(--accent);">🌍 eSIM Internacional · +200 destinos</div>
+      <h1>Viaja <span class="highlight">conectado</span> al mundo entero</h1>
+      <p>Compra tu eSIM internacional y navega en más de 200 destinos. Sin cambiar de chip, sin roaming, sin complicaciones.</p>
+      <div class="hero-buttons">
+        <a href="#esim-intl" class="btn btn-accent">Ver planes internacionales</a>
       </div>
     </div>
   </section>
@@ -1084,7 +1096,17 @@
       el.classList.add('active');
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       document.getElementById(tab).classList.add('active');
-      window.scrollTo({ top: document.getElementById(tab).offsetTop - 120, behavior: 'smooth' });
+
+      // Cambiar hero
+      if (tab === 'internacional') {
+        document.getElementById('heroNacional').style.display = 'none';
+        document.getElementById('heroIntl').style.display = 'block';
+      } else {
+        document.getElementById('heroNacional').style.display = 'block';
+        document.getElementById('heroIntl').style.display = 'none';
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Carousel

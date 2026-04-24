@@ -329,7 +329,9 @@
 
     /* ===== CARRUSEL DE PAÍSES ===== */
     .countries-carousel-wrapper {
-      overflow: hidden; padding: 1.5rem 0; background: #e8f0ea;
+      position: fixed; top: 102px; left: 0; right: 0; z-index: 998;
+      overflow: hidden; padding: 0.75rem 0; background: #e8f0ea;
+      border-bottom: 1px solid var(--card-border);
     }
     .countries-carousel {
       display: flex; gap: 16px; width: max-content;
@@ -530,6 +532,37 @@
       <a href="#internacional" class="subnav-tab" onclick="switchTab(this, 'internacional')">
         🌍 Producto Internacional
       </a>
+    </div>
+  </div>
+
+  <!-- CARRUSEL DE PAÍSES (tercera barra, debajo de subnav) -->
+  <div class="countries-carousel-wrapper" id="countriesBar" style="display:none;">
+    <div class="countries-carousel" id="countriesCarousel">
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=300&h=300&fit=crop&crop=center" alt="Francia" loading="lazy"><span>🇫🇷 Francia</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=300&h=300&fit=crop&crop=center" alt="Estados Unidos" loading="lazy"><span>🇺🇸 Estados Unidos</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=300&h=300&fit=crop&crop=center" alt="Hong Kong" loading="lazy"><span>🇭🇰 Hong Kong</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=300&h=300&fit=crop&crop=center" alt="Emiratos Árabes" loading="lazy"><span>🇦🇪 Emiratos Árabes</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&h=300&fit=crop&crop=center" alt="Grecia" loading="lazy"><span>🇬🇷 Grecia</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=300&h=300&fit=crop&crop=center" alt="Brasil" loading="lazy"><span>🇧🇷 Brasil</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&h=300&fit=crop&crop=center" alt="España" loading="lazy"><span>🇪🇸 España</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=300&h=300&fit=crop&crop=center" alt="Japón" loading="lazy"><span>🇯🇵 Japón</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=300&h=300&fit=crop&crop=center" alt="Australia" loading="lazy"><span>🇦🇺 Australia</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=300&h=300&fit=crop&crop=center" alt="Italia" loading="lazy"><span>🇮🇹 Italia</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=300&h=300&fit=crop&crop=center" alt="Alemania" loading="lazy"><span>🇩🇪 Alemania</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=300&fit=crop&crop=center" alt="Colombia" loading="lazy"><span>🇨🇴 Colombia</span></div>
+      <!-- Duplicados para loop -->
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=300&h=300&fit=crop&crop=center" alt="Francia" loading="lazy"><span>🇫🇷 Francia</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=300&h=300&fit=crop&crop=center" alt="Estados Unidos" loading="lazy"><span>🇺🇸 Estados Unidos</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=300&h=300&fit=crop&crop=center" alt="Hong Kong" loading="lazy"><span>🇭🇰 Hong Kong</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=300&h=300&fit=crop&crop=center" alt="Emiratos Árabes" loading="lazy"><span>🇦🇪 Emiratos Árabes</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&h=300&fit=crop&crop=center" alt="Grecia" loading="lazy"><span>🇬🇷 Grecia</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=300&h=300&fit=crop&crop=center" alt="Brasil" loading="lazy"><span>🇧🇷 Brasil</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&h=300&fit=crop&crop=center" alt="España" loading="lazy"><span>🇪🇸 España</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=300&h=300&fit=crop&crop=center" alt="Japón" loading="lazy"><span>🇯🇵 Japón</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=300&h=300&fit=crop&crop=center" alt="Australia" loading="lazy"><span>🇦🇺 Australia</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=300&h=300&fit=crop&crop=center" alt="Italia" loading="lazy"><span>🇮🇹 Italia</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=300&h=300&fit=crop&crop=center" alt="Alemania" loading="lazy"><span>🇩🇪 Alemania</span></div>
+      <div class="country-card"><img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=300&fit=crop&crop=center" alt="Colombia" loading="lazy"><span>🇨🇴 Colombia</span></div>
     </div>
   </div>
 
@@ -858,109 +891,6 @@
   <!-- eSIM INTERNACIONAL (DESTACADA) -->
   <div id="internacional" class="tab-content">
 
-  <!-- CARRUSEL DE PAÍSES -->
-  <div class="countries-carousel-wrapper">
-    <div class="countries-carousel" id="countriesCarousel">
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=300&h=300&fit=crop&crop=center" alt="Francia" loading="lazy">
-        <span>🇫🇷 Francia</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=300&h=300&fit=crop&crop=center" alt="Estados Unidos" loading="lazy">
-        <span>🇺🇸 Estados Unidos</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=300&h=300&fit=crop&crop=center" alt="Hong Kong" loading="lazy">
-        <span>🇭🇰 Hong Kong</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=300&h=300&fit=crop&crop=center" alt="Emiratos Árabes" loading="lazy">
-        <span>🇦🇪 Emiratos Árabes</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&h=300&fit=crop&crop=center" alt="Grecia" loading="lazy">
-        <span>🇬🇷 Grecia</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=300&h=300&fit=crop&crop=center" alt="Brasil" loading="lazy">
-        <span>🇧🇷 Brasil</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&h=300&fit=crop&crop=center" alt="España" loading="lazy">
-        <span>🇪🇸 España</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=300&h=300&fit=crop&crop=center" alt="Japón" loading="lazy">
-        <span>🇯🇵 Japón</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=300&h=300&fit=crop&crop=center" alt="Australia" loading="lazy">
-        <span>🇦🇺 Australia</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=300&h=300&fit=crop&crop=center" alt="Italia" loading="lazy">
-        <span>🇮🇹 Italia</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=300&h=300&fit=crop&crop=center" alt="Alemania" loading="lazy">
-        <span>🇩🇪 Alemania</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=300&fit=crop&crop=center" alt="Colombia" loading="lazy">
-        <span>🇨🇴 Colombia</span>
-      </div>
-      <!-- Duplicados para loop infinito -->
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=300&h=300&fit=crop&crop=center" alt="Francia" loading="lazy">
-        <span>🇫🇷 Francia</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=300&h=300&fit=crop&crop=center" alt="Estados Unidos" loading="lazy">
-        <span>🇺🇸 Estados Unidos</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=300&h=300&fit=crop&crop=center" alt="Hong Kong" loading="lazy">
-        <span>🇭🇰 Hong Kong</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=300&h=300&fit=crop&crop=center" alt="Emiratos Árabes" loading="lazy">
-        <span>🇦🇪 Emiratos Árabes</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&h=300&fit=crop&crop=center" alt="Grecia" loading="lazy">
-        <span>🇬🇷 Grecia</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=300&h=300&fit=crop&crop=center" alt="Brasil" loading="lazy">
-        <span>🇧🇷 Brasil</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&h=300&fit=crop&crop=center" alt="España" loading="lazy">
-        <span>🇪🇸 España</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=300&h=300&fit=crop&crop=center" alt="Japón" loading="lazy">
-        <span>🇯🇵 Japón</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=300&h=300&fit=crop&crop=center" alt="Australia" loading="lazy">
-        <span>🇦🇺 Australia</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=300&h=300&fit=crop&crop=center" alt="Italia" loading="lazy">
-        <span>🇮🇹 Italia</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=300&h=300&fit=crop&crop=center" alt="Alemania" loading="lazy">
-        <span>🇩🇪 Alemania</span>
-      </div>
-      <div class="country-card">
-        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=300&fit=crop&crop=center" alt="Colombia" loading="lazy">
-        <span>🇨🇴 Colombia</span>
-      </div>
-    </div>
-  </div>
-
   <section class="esim-intl-section" id="esim-intl">
     <div class="esim-intl-hero">
       <span class="esim-intl-badge">🌍 eSIM Internacional</span>
@@ -1234,12 +1164,18 @@
       document.getElementById(tab).classList.add('active');
 
       // Cambiar hero
+      var countriesBar = document.getElementById('countriesBar');
+      var heroSection = document.getElementById('heroSection');
       if (tab === 'internacional') {
         document.getElementById('heroNacional').style.display = 'none';
         document.getElementById('heroIntl').style.display = 'block';
+        countriesBar.style.display = 'block';
+        heroSection.style.paddingTop = '13rem';
       } else {
         document.getElementById('heroNacional').style.display = 'block';
         document.getElementById('heroIntl').style.display = 'none';
+        countriesBar.style.display = 'none';
+        heroSection.style.paddingTop = '9rem';
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });

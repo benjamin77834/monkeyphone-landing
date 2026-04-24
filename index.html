@@ -256,6 +256,70 @@
     .esim-step h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
     .esim-step p { color: var(--text-light); font-size: 0.82rem; line-height: 1.5; }
 
+    /* ===== CAROUSEL COMO FUNCIONA ===== */
+    .carousel-title {
+      text-align: center; font-size: 1.8rem; font-weight: 800; color: var(--navy);
+      margin: 3rem 0 0.5rem;
+    }
+    .carousel-subtitle {
+      text-align: center; color: var(--text-light); font-size: 1rem; margin-bottom: 2rem;
+    }
+    .carousel-wrapper {
+      position: relative; display: flex; align-items: center;
+      max-width: 700px; margin: 0 auto; gap: 0.5rem;
+    }
+    .carousel-track-container {
+      overflow: hidden; border-radius: 20px; flex: 1;
+    }
+    .carousel-track {
+      display: flex; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .carousel-card {
+      min-width: 100%; padding: 3rem 2.5rem;
+      background: var(--card-bg); border: 2px solid var(--card-border);
+      border-radius: 20px; text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .carousel-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gradient-green); color: #fff;
+      font-size: 1.4rem; font-weight: 900; margin-bottom: 1rem;
+    }
+    .carousel-icon { font-size: 4rem; margin-bottom: 1.25rem; }
+    .carousel-card h4 {
+      font-size: 1.4rem; font-weight: 800; color: var(--navy); margin-bottom: 0.75rem;
+    }
+    .carousel-card p {
+      font-size: 1.1rem; color: var(--text-light); line-height: 1.7;
+      max-width: 420px; margin: 0 auto;
+    }
+    .carousel-btn {
+      width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--card-border);
+      background: var(--card-bg); color: var(--navy); font-size: 1.8rem;
+      cursor: pointer; transition: all 0.2s; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-btn:hover {
+      background: var(--primary); color: #fff; border-color: var(--primary);
+    }
+    .carousel-dots {
+      display: flex; justify-content: center; gap: 0.6rem; margin-top: 1.5rem;
+    }
+    .dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--card-border); cursor: pointer; transition: all 0.3s;
+    }
+    .dot.active { background: var(--primary); transform: scale(1.2); }
+
+    @media (max-width: 768px) {
+      .carousel-card { padding: 2.5rem 1.5rem; }
+      .carousel-card h4 { font-size: 1.2rem; }
+      .carousel-card p { font-size: 1rem; }
+      .carousel-icon { font-size: 3rem; }
+      .carousel-btn { width: 42px; height: 42px; font-size: 1.4rem; }
+    }
+
     /* ===== eSIM INTERNACIONAL ===== */
     .esim-intl-section {
       padding: 4rem 2rem; max-width: 1000px; margin: 0 auto;
@@ -652,23 +716,39 @@
         <div class="esim-benefit">📧 Recíbela por correo</div>
         <div class="esim-benefit">🔄 Porta tu número</div>
       </div>
-      <h3 style="text-align:center; margin: 2.5rem 0 1.5rem; font-size: 1.3rem; color: var(--navy);">¿Cómo funciona?</h3>
-      <div class="esim-steps">
-        <div class="esim-step">
-          <div class="step-icon">📱</div>
-          <h4>1. Verifica tu dispositivo</h4>
-          <p>Busca tu modelo para confirmar compatibilidad con eSIM.</p>
+      <h3 class="carousel-title">¿Cómo funciona?</h3>
+      <p class="carousel-subtitle">3 pasos simples para activar tu eSIM</p>
+
+      <div class="carousel-wrapper">
+        <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)" aria-label="Anterior">‹</button>
+        <div class="carousel-track-container">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-card">
+              <div class="carousel-number">1</div>
+              <div class="carousel-icon">📱</div>
+              <h4>Verifica tu dispositivo</h4>
+              <p>Busca tu modelo de celular para confirmar que es compatible con eSIM. La mayoría de smartphones modernos lo son.</p>
+            </div>
+            <div class="carousel-card">
+              <div class="carousel-number">2</div>
+              <div class="carousel-icon">📧</div>
+              <h4>Ingresa tu correo</h4>
+              <p>Te enviaremos un código QR a tu correo electrónico. Es tu eSIM digital lista para instalar.</p>
+            </div>
+            <div class="carousel-card">
+              <div class="carousel-number">3</div>
+              <div class="carousel-icon">✅</div>
+              <h4>Activa y listo</h4>
+              <p>Escanea el QR desde los ajustes de tu teléfono. En menos de 5 minutos estarás navegando.</p>
+            </div>
+          </div>
         </div>
-        <div class="esim-step">
-          <div class="step-icon">📧</div>
-          <h4>2. Ingresa tu correo</h4>
-          <p>Te enviaremos el QR de tu eSIM para que la instales.</p>
-        </div>
-        <div class="esim-step">
-          <div class="step-icon">✅</div>
-          <h4>3. Activa y listo</h4>
-          <p>Escanea el QR desde tu teléfono y empieza a navegar.</p>
-        </div>
+        <button class="carousel-btn carousel-next" onclick="moveCarousel(1)" aria-label="Siguiente">›</button>
+      </div>
+      <div class="carousel-dots" id="carouselDots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
       </div>
       <div style="text-align:center; margin-top: 2rem;">
         <a href="https://app.monkeyfon.com/esim" class="btn btn-primary">Consulta tu Dispositivo →</a>
@@ -854,15 +934,54 @@
     });
 
     function switchTab(el, tab) {
-      // Tabs
       document.querySelectorAll('.subnav-tab').forEach(t => t.classList.remove('active'));
       el.classList.add('active');
-      // Content
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       document.getElementById(tab).classList.add('active');
-      // Scroll up
       window.scrollTo({ top: document.getElementById(tab).offsetTop - 120, behavior: 'smooth' });
     }
+
+    // Carousel
+    let currentSlide = 0;
+    const totalSlides = 3;
+    let autoplayInterval;
+
+    function moveCarousel(dir) {
+      currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+      updateCarousel();
+      resetAutoplay();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+      resetAutoplay();
+    }
+
+    function updateCarousel() {
+      document.getElementById('carouselTrack').style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      document.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    function resetAutoplay() {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => moveCarousel(1), 5000);
+    }
+
+    // Auto-play cada 5 segundos
+    autoplayInterval = setInterval(() => moveCarousel(1), 5000);
+
+    // Swipe touch para móvil
+    let touchStartX = 0;
+    document.querySelector('.carousel-track-container')?.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+    });
+    document.querySelector('.carousel-track-container')?.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
+    });
   </script>
 </body>
 </html>

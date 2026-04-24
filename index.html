@@ -771,23 +771,42 @@
       </div>
     </div>
 
-    <div class="esim-intl-steps">
-      <div class="esim-step">
-        <div class="step-icon">📱</div>
-        <h4>1. Verifica tu dispositivo</h4>
-        <p>Confirma que es compatible con eSIM.</p>
+    <h3 class="carousel-title">¿Cómo funciona?</h3>
+    <p class="carousel-subtitle">3 pasos para conectarte en el extranjero</p>
+
+    <div class="carousel-wrapper">
+      <button class="carousel-btn carousel-prev" onclick="moveCarouselIntl(-1)" aria-label="Anterior">‹</button>
+      <div class="carousel-track-container" id="carouselIntlContainer">
+        <div class="carousel-track" id="carouselTrackIntl">
+          <div class="carousel-card">
+            <div class="carousel-number">1</div>
+            <div class="carousel-icon">📱</div>
+            <h4>Verifica tu dispositivo</h4>
+            <p>Confirma que tu celular es compatible con eSIM. La mayoría de smartphones recientes lo soportan.</p>
+          </div>
+          <div class="carousel-card">
+            <div class="carousel-number">2</div>
+            <div class="carousel-icon">🛒</div>
+            <h4>Elige tu plan</h4>
+            <p>Selecciona el paquete de datos ideal para tu viaje: Europa, Asia o Global. Paga en pesos mexicanos.</p>
+          </div>
+          <div class="carousel-card">
+            <div class="carousel-number">3</div>
+            <div class="carousel-icon">✈️</div>
+            <h4>Conéctate y viaja</h4>
+            <p>Recibe tu eSIM por correo, escanea el QR e instálala. Al llegar a tu destino ya estarás conectado.</p>
+          </div>
+        </div>
       </div>
-      <div class="esim-step">
-        <div class="step-icon">🛒</div>
-        <h4>2. Elige tu plan</h4>
-        <p>Selecciona el paquete ideal para tu viaje.</p>
-      </div>
-      <div class="esim-step">
-        <div class="step-icon">✈️</div>
-        <h4>3. Conéctate y viaja</h4>
-        <p>Recibe tu eSIM por correo, instálala y listo.</p>
-      </div>
+      <button class="carousel-btn carousel-next" onclick="moveCarouselIntl(1)" aria-label="Siguiente">›</button>
     </div>
+    <div class="carousel-dots" id="carouselDotsIntl">
+      <span class="dot active" onclick="goToSlideIntl(0)"></span>
+      <span class="dot" onclick="goToSlideIntl(1)"></span>
+      <span class="dot" onclick="goToSlideIntl(2)"></span>
+    </div>
+
+    <div style="height: 2rem;"></div>
 
     <!-- Planes Europa -->
     <h3 class="intl-region-title">🇪🇺 Europa</h3>
@@ -981,6 +1000,46 @@
     document.querySelector('.carousel-track-container')?.addEventListener('touchend', e => {
       const diff = touchStartX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
+    });
+
+    // Carousel Internacional
+    let currentSlideIntl = 0;
+    let autoplayIntl;
+
+    function moveCarouselIntl(dir) {
+      currentSlideIntl = (currentSlideIntl + dir + totalSlides) % totalSlides;
+      updateCarouselIntl();
+      resetAutoplayIntl();
+    }
+
+    function goToSlideIntl(index) {
+      currentSlideIntl = index;
+      updateCarouselIntl();
+      resetAutoplayIntl();
+    }
+
+    function updateCarouselIntl() {
+      document.getElementById('carouselTrackIntl').style.transform = 'translateX(-' + (currentSlideIntl * 100) + '%)';
+      document.querySelectorAll('#carouselDotsIntl .dot').forEach((d, i) => {
+        d.classList.toggle('active', i === currentSlideIntl);
+      });
+    }
+
+    function resetAutoplayIntl() {
+      clearInterval(autoplayIntl);
+      autoplayIntl = setInterval(() => moveCarouselIntl(1), 5000);
+    }
+
+    autoplayIntl = setInterval(() => moveCarouselIntl(1), 5000);
+
+    // Swipe touch internacional
+    let touchStartXIntl = 0;
+    document.getElementById('carouselIntlContainer')?.addEventListener('touchstart', e => {
+      touchStartXIntl = e.touches[0].clientX;
+    });
+    document.getElementById('carouselIntlContainer')?.addEventListener('touchend', e => {
+      const diff = touchStartXIntl - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) moveCarouselIntl(diff > 0 ? 1 : -1);
     });
   </script>
 </body>

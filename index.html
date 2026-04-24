@@ -1125,6 +1125,8 @@
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Fallback para iOS
+      setTimeout(function() { window.scrollTo(0, 0); }, 100);
     }
 
     // Carousel

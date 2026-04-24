@@ -71,28 +71,12 @@
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: 0.3s; }
 
-    /* ===== KING KONG BANNER ===== */
-    .kingkong-banner {
-      position: fixed; top: 62px; left: 0; right: 0; z-index: 1000;
-      background: linear-gradient(135deg, #0d1f15 0%, #1a3a2a 50%, #0d1f15 100%);
-      height: 52px; overflow: hidden;
-    }
-    .kingkong-scene {
-      display: flex; align-items: center; justify-content: center;
-      height: 100%; gap: 1rem; max-width: 700px; margin: 0 auto; padding: 0 1rem;
-    }
-    .kingkong-svg { height: 48px; width: auto; flex-shrink: 0; }
-    .kingkong-text { display: flex; flex-direction: column; }
-    .kingkong-title { color: #fff; font-size: 0.85rem; font-weight: 700; }
-    .kingkong-sub { color: var(--accent); font-size: 0.7rem; font-weight: 600; }
-
     /* ===== SUBNAV ===== */
     .subnav {
       position: fixed; top: 62px; left: 0; right: 0; z-index: 999;
       background: linear-gradient(135deg, #1a3a2a 0%, #2a5a3e 100%);
       box-shadow: 0 4px 15px rgba(26,58,42,0.2);
       height: 72px;
-      transition: top 0.3s;
     }
     .subnav-inner {
       display: flex; justify-content: center; gap: 0; max-width: 700px; margin: 0 auto;
@@ -544,58 +528,6 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
-
-  <!-- KING KONG BANNER (solo Internacional) -->
-  <div class="kingkong-banner" id="kingkongBanner" style="display:none;">
-    <div class="kingkong-scene">
-      <svg class="kingkong-svg" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
-        <!-- Skyline de fondo -->
-        <rect x="0" y="60" width="400" height="60" fill="#1a3a2a" opacity="0.3"/>
-        <rect x="20" y="40" width="18" height="80" fill="#2a5a3e" rx="2"/>
-        <rect x="45" y="50" width="14" height="70" fill="#1a3a2a" rx="2"/>
-        <rect x="65" y="35" width="16" height="85" fill="#2a5a3e" rx="2"/>
-        <rect x="310" y="45" width="16" height="75" fill="#2a5a3e" rx="2"/>
-        <rect x="335" y="38" width="14" height="82" fill="#1a3a2a" rx="2"/>
-        <rect x="360" y="50" width="18" height="70" fill="#2a5a3e" rx="2"/>
-        <!-- Empire State -->
-        <rect x="175" y="20" width="50" height="100" fill="#1a3a2a" rx="3"/>
-        <rect x="185" y="10" width="30" height="15" fill="#1a3a2a" rx="2"/>
-        <rect x="195" y="0" width="10" height="14" fill="#1a3a2a" rx="1"/>
-        <!-- Ventanas Empire State -->
-        <rect x="182" y="28" width="6" height="4" fill="#F5A623" opacity="0.6" rx="1"/>
-        <rect x="192" y="28" width="6" height="4" fill="#F5A623" opacity="0.4" rx="1"/>
-        <rect x="202" y="28" width="6" height="4" fill="#F5A623" opacity="0.7" rx="1"/>
-        <rect x="212" y="28" width="6" height="4" fill="#F5A623" opacity="0.5" rx="1"/>
-        <rect x="182" y="38" width="6" height="4" fill="#F5A623" opacity="0.5" rx="1"/>
-        <rect x="192" y="38" width="6" height="4" fill="#F5A623" opacity="0.7" rx="1"/>
-        <rect x="202" y="38" width="6" height="4" fill="#F5A623" opacity="0.4" rx="1"/>
-        <rect x="212" y="38" width="6" height="4" fill="#F5A623" opacity="0.6" rx="1"/>
-        <!-- King Kong -->
-        <ellipse cx="200" cy="18" rx="14" ry="12" fill="#3d3d3d"/>
-        <ellipse cx="200" cy="16" rx="12" ry="10" fill="#4a4a4a"/>
-        <!-- Ojos -->
-        <circle cx="195" cy="14" r="2.5" fill="#fff"/>
-        <circle cx="205" cy="14" r="2.5" fill="#fff"/>
-        <circle cx="195" cy="14" r="1.2" fill="#1a1a1a"/>
-        <circle cx="205" cy="14" r="1.2" fill="#1a1a1a"/>
-        <!-- Boca -->
-        <ellipse cx="200" cy="20" rx="5" ry="2.5" fill="#2a2a2a"/>
-        <!-- Brazos -->
-        <ellipse cx="180" cy="22" rx="6" ry="4" fill="#3d3d3d" transform="rotate(-20 180 22)"/>
-        <ellipse cx="220" cy="22" rx="6" ry="4" fill="#3d3d3d" transform="rotate(20 220 22)"/>
-        <!-- Celular en mano derecha -->
-        <rect x="224" y="17" width="7" height="11" fill="#1a6bff" rx="1.5" transform="rotate(15 227 22)"/>
-        <rect x="225.5" y="19" width="4" height="6" fill="#4dc3ff" rx="0.5" transform="rotate(15 227 22)"/>
-        <!-- Señal del celular -->
-        <path d="M235 12 Q238 8 241 12" stroke="#F5A623" stroke-width="1.5" fill="none" opacity="0.8"/>
-        <path d="M233 9 Q238 3 243 9" stroke="#F5A623" stroke-width="1.2" fill="none" opacity="0.5"/>
-      </svg>
-      <div class="kingkong-text">
-        <span class="kingkong-title">🦍 Conectado en todo el mundo</span>
-        <span class="kingkong-sub">eSIM Internacional · +200 destinos</span>
-      </div>
-    </div>
-  </div>
 
   <!-- SEGUNDA BARRA: NACIONAL / INTERNACIONAL -->
   <div class="subnav">
@@ -1153,24 +1085,17 @@
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       document.getElementById(tab).classList.add('active');
 
+      // Cambiar hero
       var countriesBar = document.getElementById('countriesBar');
       var heroSection = document.getElementById('heroSection');
-      var kingkong = document.getElementById('kingkongBanner');
-      var subnav = document.querySelector('.subnav');
-
       if (tab === 'internacional') {
         document.getElementById('heroNacional').style.display = 'none';
         document.getElementById('heroIntl').style.display = 'block';
-        kingkong.style.display = 'block';
-        subnav.style.top = '114px';
         countriesBar.style.display = 'block';
-        countriesBar.style.top = '186px';
-        heroSection.style.paddingTop = '18rem';
+        heroSection.style.paddingTop = '15rem';
       } else {
         document.getElementById('heroNacional').style.display = 'block';
         document.getElementById('heroIntl').style.display = 'none';
-        kingkong.style.display = 'none';
-        subnav.style.top = '62px';
         countriesBar.style.display = 'none';
         heroSection.style.paddingTop = '10rem';
       }

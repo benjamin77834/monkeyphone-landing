@@ -329,7 +329,7 @@
 
     /* ===== CARRUSEL DE PAÍSES ===== */
     .countries-carousel-wrapper {
-      overflow: hidden; padding: 1.5rem 0; background: var(--navy);
+      overflow: hidden; padding: 1.5rem 0; background: #e8f0ea;
     }
     .countries-carousel {
       display: flex; gap: 16px; width: max-content;
@@ -341,11 +341,12 @@
       100% { transform: translateX(-50%); }
     }
     .country-card {
-      width: 120px; min-width: 120px; /* ~8cm en pantalla */
-      height: 120px;
-      border-radius: 14px; overflow: hidden; position: relative;
+      width: 180px; min-width: 180px;
+      height: 180px;
+      border-radius: 16px; overflow: hidden; position: relative;
       flex-shrink: 0; cursor: pointer;
       transition: transform 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     .country-card:hover { transform: scale(1.08); }
     .country-card img {
@@ -354,8 +355,8 @@
     .country-card span {
       position: absolute; bottom: 0; left: 0; right: 0;
       background: linear-gradient(transparent, rgba(0,0,0,0.75));
-      color: #fff; font-size: 0.68rem; font-weight: 600;
-      padding: 1.5rem 0.5rem 0.4rem; text-align: center;
+      color: #fff; font-size: 0.8rem; font-weight: 600;
+      padding: 2rem 0.5rem 0.5rem; text-align: center;
     }
 
     /* ===== COLLAGE BANNER ===== */

@@ -69,10 +69,34 @@
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: 0.3s; }
 
+    /* ===== SUBNAV ===== */
+    .subnav {
+      position: fixed; top: 62px; left: 0; right: 0; z-index: 999;
+      background: var(--navy); border-bottom: 2px solid var(--accent);
+    }
+    .subnav-inner {
+      display: flex; justify-content: center; gap: 0; max-width: 600px; margin: 0 auto;
+    }
+    .subnav-tab {
+      flex: 1; text-align: center; padding: 0.7rem 1.5rem;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      font-size: 0.85rem; font-weight: 600; transition: all 0.25s;
+      border-bottom: 3px solid transparent;
+    }
+    .subnav-tab:hover { color: #fff; }
+    .subnav-tab.active {
+      color: #fff; border-bottom-color: var(--accent);
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* ===== TAB CONTENT ===== */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 7rem 2rem 4rem;
+      text-align: center; padding: 9rem 2rem 4rem;
       background: linear-gradient(180deg, #e8f5ec 0%, var(--bg) 100%);
     }
     .hero-content { max-width: 800px; }
@@ -315,7 +339,8 @@
       }
       .navbar-links.open { display: flex; }
       .hamburger { display: flex; }
-      .hero { padding: 6.5rem 1.5rem 3rem; }
+      .hero { padding: 8.5rem 1.5rem 3rem; }
+      .subnav-tab { font-size: 0.78rem; padding: 0.6rem 0.75rem; }
       .recarga-card { padding: 2rem 1.5rem; }
       .input-group { flex-direction: column; }
       .esim-benefits { gap: 0.5rem; }
@@ -344,6 +369,18 @@
     </button>
   </nav>
 
+  <!-- SEGUNDA BARRA: NACIONAL / INTERNACIONAL -->
+  <div class="subnav">
+    <div class="subnav-inner">
+      <a href="#nacional" class="subnav-tab active" onclick="switchTab(this, 'nacional')">
+        🇲🇽 Producto Nacional
+      </a>
+      <a href="#internacional" class="subnav-tab" onclick="switchTab(this, 'internacional')">
+        🌍 Producto Internacional
+      </a>
+    </div>
+  </div>
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
@@ -358,6 +395,7 @@
   </section>
 
   <!-- RECARGA -->
+  <div id="nacional" class="tab-content active">
   <section class="recarga-section" id="recarga">
     <div class="recarga-card">
       <h2>📱 Recarga y Consulta tu Saldo</h2>
@@ -637,8 +675,10 @@
       </div>
     </div>
   </section>
+  </div><!-- fin nacional -->
 
   <!-- eSIM INTERNACIONAL (DESTACADA) -->
+  <div id="internacional" class="tab-content">
   <section class="esim-intl-section" id="esim-intl">
     <div class="esim-intl-hero">
       <span class="esim-intl-badge">🌍 eSIM Internacional</span>
@@ -738,6 +778,7 @@
       </div>
     </div>
   </section>
+  </div><!-- fin internacional -->
 
   <!-- FAQ -->
   <section class="faq-section" id="faq">
@@ -811,6 +852,17 @@
       const phone = document.getElementById('phoneInput').value.trim();
       if (phone.length === 10) { this.href = 'https://app.monkeyfon.com/?phone=' + phone; }
     });
+
+    function switchTab(el, tab) {
+      // Tabs
+      document.querySelectorAll('.subnav-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      // Content
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      // Scroll up
+      window.scrollTo({ top: document.getElementById(tab).offsetTop - 120, behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>

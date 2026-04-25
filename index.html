@@ -536,12 +536,14 @@
       .hero { padding: 2rem 1.5rem 2rem; min-height: auto; }
       .hero h1 { font-size: 2rem; }
       .hero p { font-size: 0.95rem; margin-bottom: 1.5rem; }
-      .subnav { height: 44px; }
+      .subnav { height: 44px; position: relative !important; top: auto !important; }
       .subnav-tab { font-size: 0.75rem; letter-spacing: 0; white-space: nowrap; }
       .countries-carousel-wrapper {
         position: relative !important; top: auto !important;
-        margin-top: 134px; padding: 0.5rem 0;
+        margin-top: 0; padding: 0.5rem 0;
       }
+      .kingkong-cintillo { position: relative !important; top: auto !important; margin-top: 62px; }
+      .navbar { position: fixed; }
       .country-card { width: 100px; min-width: 100px; height: 100px; border-radius: 12px; }
       .country-card span { font-size: 0.65rem; padding: 1.2rem 0.4rem 0.3rem; }
       .recarga-section { margin-top: 0; padding: 0 1.5rem 2rem; }
@@ -1240,54 +1242,37 @@
       var cintillo = document.getElementById('kingkongCintillo');
       var mexicoCintillo = document.getElementById('mexicoCintillo');
 
+      // Ocultar logo siempre (cintillos lo reemplazan)
+      document.getElementById('navLogoImg').style.display = 'none';
+      document.getElementById('navLogoText').style.display = 'none';
+      document.getElementById('navBanner').style.display = 'none';
+
       if (tab === 'internacional') {
         document.getElementById('heroNacional').style.display = 'none';
         document.getElementById('heroIntl').style.display = 'block';
         countriesBar.style.display = 'block';
         ciudadesBar.style.display = 'none';
-        document.getElementById('navLogoImg').style.display = 'none';
-        document.getElementById('navLogoText').style.display = 'none';
-        document.getElementById('navBanner').style.display = 'none';
-        document.querySelector('.navbar').classList.add('intl-mode');
         cintillo.style.display = 'block';
         mexicoCintillo.style.display = 'none';
-
-        if (isMobile) {
-          subnav.style.top = '142px';
-          countriesBar.style.top = '186px';
-          heroSection.style.paddingTop = '2rem';
-          heroSection.style.minHeight = 'auto';
-        } else {
-          subnav.style.top = '202px';
-          countriesBar.style.top = '274px';
-          heroSection.style.paddingTop = '22rem';
-          heroSection.style.minHeight = '100vh';
-        }
       } else {
         document.getElementById('heroNacional').style.display = 'block';
         document.getElementById('heroIntl').style.display = 'none';
         countriesBar.style.display = 'none';
         ciudadesBar.style.display = 'block';
-        document.getElementById('navLogoImg').style.display = 'block';
-        document.getElementById('navLogoText').style.display = 'block';
-        document.getElementById('navBanner').style.display = 'none';
-        document.querySelector('.navbar').classList.remove('intl-mode');
         cintillo.style.display = 'none';
         mexicoCintillo.style.display = 'block';
-        document.getElementById('navLogoImg').style.display = 'none';
-        document.getElementById('navLogoText').style.display = 'none';
+      }
 
-        if (isMobile) {
-          subnav.style.top = '142px';
-          ciudadesBar.style.top = '186px';
-          heroSection.style.paddingTop = '2rem';
-          heroSection.style.minHeight = 'auto';
-        } else {
-          subnav.style.top = '202px';
-          ciudadesBar.style.top = '274px';
-          heroSection.style.paddingTop = '22rem';
-          heroSection.style.minHeight = '100vh';
-        }
+      // Posiciones solo en desktop (en móvil todo es relative via CSS)
+      if (!isMobile) {
+        subnav.style.top = '202px';
+        countriesBar.style.top = '274px';
+        ciudadesBar.style.top = '274px';
+        heroSection.style.paddingTop = '22rem';
+        heroSection.style.minHeight = '100vh';
+      } else {
+        heroSection.style.paddingTop = '1rem';
+        heroSection.style.minHeight = 'auto';
       }
 
       // FAQ según tab
@@ -1299,7 +1284,6 @@
       });
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Fallback para iOS
       setTimeout(function() { window.scrollTo(0, 0); }, 100);
     }
 

@@ -106,10 +106,11 @@
 
     /* ===== SUBNAV ===== */
     .subnav {
-      position: fixed; top: 62px; left: 0; right: 0; z-index: 999;
+      position: fixed; top: 202px; left: 0; right: 0; z-index: 999;
       background: linear-gradient(135deg, #1a3a2a 0%, #2a5a3e 100%);
       box-shadow: 0 4px 15px rgba(26,58,42,0.2);
       height: 72px;
+      transition: top 0.3s;
     }
     .subnav-inner {
       display: flex; justify-content: center; gap: 0; max-width: 700px; margin: 0 auto;
@@ -566,8 +567,8 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <a href="#" class="navbar-logo">
-      <img src="https://app.monkeyfon.com/static/media/monkey512x512.edf0a33ad79362ccd16a.png" alt="Monkey Phone Logo" id="navLogoImg">
-      <span id="navLogoText">Monkey Phone</span>
+      <img src="https://app.monkeyfon.com/static/media/monkey512x512.edf0a33ad79362ccd16a.png" alt="Monkey Phone Logo" id="navLogoImg" style="display:none;">
+      <span id="navLogoText" style="display:none;">Monkey Phone</span>
       <img src="kingkong-banner.png" alt="Monkey Phone Internacional" class="navbar-banner" id="navBanner">
     </a>
     <ul class="navbar-links" id="navLinks">
@@ -666,7 +667,7 @@
   </div>
 
   <!-- CARRUSEL NACIONAL (ciudades y pueblos mágicos) -->
-  <div class="countries-carousel-wrapper" id="ciudadesBar" style="top:134px;">
+  <div class="countries-carousel-wrapper" id="ciudadesBar" style="top:274px;">
     <div class="countries-carousel" id="ciudadesCarousel">
       <div class="country-card"><img src="https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=300&h=300&fit=crop&crop=center" alt="CDMX" loading="lazy"><span>🏙️ CDMX</span></div>
       <div class="country-card"><img src="https://images.unsplash.com/photo-1552074284-5e88ef1aef18?w=300&h=300&fit=crop&crop=center" alt="Bacalar" loading="lazy"><span>💎 Bacalar</span></div>

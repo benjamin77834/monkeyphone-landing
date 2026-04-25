@@ -56,13 +56,30 @@
     /* CINTILLO KING KONG */
     .kingkong-cintillo {
       position: fixed; top: 62px; left: 0; right: 0; z-index: 1001;
-      display: none; height: 80px; overflow: hidden;
+      display: none; height: 100px; overflow: hidden;
     }
     .kingkong-cintillo img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+      width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
+    }
+    .kingkong-cintillo .cintillo-text {
+      position: absolute; left: 2rem; top: 50%; transform: translateY(-50%);
+      display: flex; gap: 0.4rem;
+    }
+    .cintillo-letter {
+      font-size: 1.6rem; font-weight: 900; color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7), 0 0 20px rgba(245,166,35,0.4);
+      display: inline-block;
+      animation: bounceLetter 1.5s ease-in-out infinite;
+    }
+    .cintillo-letter.accent { color: #F5A623; }
+    @keyframes bounceLetter {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
     @media (max-width: 768px) {
-      .kingkong-cintillo { height: 50px; }
+      .kingkong-cintillo { height: 65px; }
+      .cintillo-letter { font-size: 1rem; }
+      .kingkong-cintillo .cintillo-text { left: 0.75rem; }
     }
     .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
     .navbar-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
@@ -568,6 +585,20 @@
   <!-- CINTILLO KING KONG -->
   <div class="kingkong-cintillo" id="kingkongCintillo">
     <img src="kingkong-banner.png" alt="Monkey Phone Internacional">
+    <div class="cintillo-text">
+      <span class="cintillo-letter accent" style="animation-delay:0s">M</span>
+      <span class="cintillo-letter" style="animation-delay:0.1s">o</span>
+      <span class="cintillo-letter" style="animation-delay:0.15s">n</span>
+      <span class="cintillo-letter" style="animation-delay:0.2s">k</span>
+      <span class="cintillo-letter" style="animation-delay:0.25s">e</span>
+      <span class="cintillo-letter" style="animation-delay:0.3s">y</span>
+      <span style="width:8px; display:inline-block;"></span>
+      <span class="cintillo-letter accent" style="animation-delay:0.4s">P</span>
+      <span class="cintillo-letter" style="animation-delay:0.45s">h</span>
+      <span class="cintillo-letter" style="animation-delay:0.5s">o</span>
+      <span class="cintillo-letter" style="animation-delay:0.55s">n</span>
+      <span class="cintillo-letter" style="animation-delay:0.6s">e</span>
+    </div>
   </div>
 
   <!-- SEGUNDA BARRA: NACIONAL / INTERNACIONAL -->
@@ -1179,8 +1210,8 @@
         document.getElementById('navBanner').style.display = 'none';
         document.querySelector('.navbar').classList.add('intl-mode');
         document.getElementById('kingkongCintillo').style.display = 'block';
-        document.querySelector('.subnav').style.top = '142px';
-        countriesBar.style.top = '214px';
+        document.querySelector('.subnav').style.top = '162px';
+        countriesBar.style.top = '234px';
         var isMobile = window.innerWidth <= 768;
         heroSection.style.paddingTop = isMobile ? '2rem' : '15rem';
         heroSection.style.minHeight = isMobile ? 'auto' : '100vh';

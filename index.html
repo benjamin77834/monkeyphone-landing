@@ -50,9 +50,11 @@
     .navbar-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
     .navbar-logo img { width: 48px; height: 48px; border-radius: 12px; }
     .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
-    .navbar-banner { display: none; height: 54px; flex: 1; max-width: 600px; border-radius: 8px; object-fit: cover; }
+    .navbar-banner { display: none; width: 100%; max-width: 700px; height: auto; border-radius: 8px; object-fit: contain; }
+    .navbar.intl-mode { padding: 0.5rem 2rem; }
+    .navbar.intl-mode .navbar-banner { display: block; }
     @media (max-width: 768px) {
-      .navbar-banner { height: 44px; max-width: none; }
+      .navbar-banner { max-width: 100%; }
     }
     .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
     .navbar-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
@@ -1162,6 +1164,7 @@
         document.getElementById('navLogoImg').style.display = 'none';
         document.getElementById('navLogoText').style.display = 'none';
         document.getElementById('navBanner').style.display = 'block';
+        document.querySelector('.navbar').classList.add('intl-mode');
         var isMobile = window.innerWidth <= 768;
         heroSection.style.paddingTop = isMobile ? '2rem' : '15rem';
         heroSection.style.minHeight = isMobile ? 'auto' : '100vh';
@@ -1173,6 +1176,7 @@
         document.getElementById('navLogoImg').style.display = 'block';
         document.getElementById('navLogoText').style.display = 'block';
         document.getElementById('navBanner').style.display = 'none';
+        document.querySelector('.navbar').classList.remove('intl-mode');
         var isMobile = window.innerWidth <= 768;
         heroSection.style.paddingTop = isMobile ? '2rem' : '15rem';
         heroSection.style.minHeight = isMobile ? 'auto' : '100vh';

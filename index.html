@@ -571,10 +571,10 @@
       <img src="kingkong-banner.png" alt="Monkey Phone Internacional" class="navbar-banner" id="navBanner">
     </a>
     <ul class="navbar-links" id="navLinks">
-      <li><a href="#planes">Ofertas</a></li>
-      <li><a href="#cobertura">Cobertura</a></li>
-      <li><a href="#esim">eSIM</a></li>
-      <li><a href="#esim-intl" style="color: var(--accent); font-weight: 600;">🌍 eSIM Internacional</a></li>
+      <li><a href="#planes" onclick="navToTab('nacional', 'planes')">Ofertas</a></li>
+      <li><a href="#cobertura" onclick="navToTab('nacional', 'cobertura')">Cobertura</a></li>
+      <li><a href="#esim" onclick="navToTab('nacional', 'esim')">eSIM</a></li>
+      <li><a href="#esim-intl" onclick="navToTab('internacional', 'esim-intl')" style="color: var(--accent); font-weight: 600;">🌍 eSIM Internacional</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="https://app.monkeyfon.com/Jugar" target="_blank">🎮 Jugar</a></li>
       <li><a href="https://app.monkeyfon.com/" class="btn btn-primary">📱 Recargar</a></li>
@@ -1210,6 +1210,20 @@
         window.location.href = 'https://app.monkeyfon.com/?msisdn=' + phone;
       }
     });
+
+    function navToTab(tab, sectionId) {
+      // Switch to the correct tab first
+      var tabEl = document.querySelector('.subnav-tab[href="#' + tab + '"]');
+      if (tabEl) switchTab(tabEl, tab);
+      // Then scroll to the section after a short delay
+      setTimeout(function() {
+        var section = document.getElementById(sectionId);
+        if (section) {
+          var offset = window.innerWidth <= 768 ? 180 : 300;
+          window.scrollTo({ top: section.offsetTop - offset, behavior: 'smooth' });
+        }
+      }, 200);
+    }
 
     function switchTab(el, tab) {
       document.querySelectorAll('.subnav-tab').forEach(t => t.classList.remove('active'));

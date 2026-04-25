@@ -50,6 +50,7 @@
     .navbar-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
     .navbar-logo img { width: 48px; height: 48px; border-radius: 12px; }
     .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
+    .navbar-banner { display: none; height: 48px; border-radius: 10px; object-fit: cover; }
     .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
     .navbar-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
     .navbar-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
@@ -533,8 +534,9 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <a href="#" class="navbar-logo">
-      <img src="https://app.monkeyfon.com/static/media/monkey512x512.edf0a33ad79362ccd16a.png" alt="Monkey Phone Logo">
-      <span>Monkey Phone</span>
+      <img src="https://app.monkeyfon.com/static/media/monkey512x512.edf0a33ad79362ccd16a.png" alt="Monkey Phone Logo" id="navLogoImg">
+      <span id="navLogoText">Monkey Phone</span>
+      <img src="kingkong-banner.png" alt="Monkey Phone Internacional" class="navbar-banner" id="navBanner">
     </a>
     <ul class="navbar-links" id="navLinks">
       <li><a href="#planes">Ofertas</a></li>
@@ -1154,6 +1156,9 @@
         document.getElementById('heroIntl').style.display = 'block';
         countriesBar.style.display = 'block';
         ciudadesBar.style.display = 'none';
+        document.getElementById('navLogoImg').style.display = 'none';
+        document.getElementById('navLogoText').style.display = 'none';
+        document.getElementById('navBanner').style.display = 'block';
         var isMobile = window.innerWidth <= 768;
         heroSection.style.paddingTop = isMobile ? '2rem' : '15rem';
         heroSection.style.minHeight = isMobile ? 'auto' : '100vh';
@@ -1162,6 +1167,9 @@
         document.getElementById('heroIntl').style.display = 'none';
         countriesBar.style.display = 'none';
         ciudadesBar.style.display = 'block';
+        document.getElementById('navLogoImg').style.display = 'block';
+        document.getElementById('navLogoText').style.display = 'block';
+        document.getElementById('navBanner').style.display = 'none';
         var isMobile = window.innerWidth <= 768;
         heroSection.style.paddingTop = isMobile ? '2rem' : '15rem';
         heroSection.style.minHeight = isMobile ? 'auto' : '100vh';

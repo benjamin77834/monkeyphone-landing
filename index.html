@@ -56,7 +56,7 @@
     /* CINTILLO KING KONG */
     .kingkong-cintillo {
       position: fixed; top: 62px; left: 0; right: 0; z-index: 1001;
-      display: none; height: 100px; overflow: hidden;
+      display: none; height: 140px; overflow: hidden;
       background: #d4a44a;
     }
     .kingkong-cintillo img {
@@ -67,7 +67,7 @@
       display: flex; gap: 0.2rem;
     }
     .cintillo-letter {
-      font-size: 1.8rem; font-weight: 900; color: #0d5a1e;
+      font-size: 2.2rem; font-weight: 900; color: #0d5a1e;
       text-shadow: 1px 1px 4px rgba(255,255,255,0.5), 0 0 10px rgba(255,255,255,0.3);
       display: inline-block;
       animation: bounceLetter 2s ease-in-out infinite;
@@ -79,8 +79,8 @@
       50% { transform: translateY(-5px); }
     }
     @media (max-width: 768px) {
-      .kingkong-cintillo { height: 60px; }
-      .cintillo-letter { font-size: 1.1rem; }
+      .kingkong-cintillo { height: 80px; }
+      .cintillo-letter { font-size: 1.3rem; }
       .kingkong-cintillo .cintillo-text { left: 0.75rem; top: 6px; }
     }
     .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
@@ -1252,14 +1252,14 @@
         mexicoCintillo.style.display = 'none';
 
         if (isMobile) {
-          subnav.style.top = '122px';
-          countriesBar.style.top = '166px';
+          subnav.style.top = '142px';
+          countriesBar.style.top = '186px';
           heroSection.style.paddingTop = '2rem';
           heroSection.style.minHeight = 'auto';
         } else {
-          subnav.style.top = '162px';
-          countriesBar.style.top = '234px';
-          heroSection.style.paddingTop = '18rem';
+          subnav.style.top = '202px';
+          countriesBar.style.top = '274px';
+          heroSection.style.paddingTop = '22rem';
           heroSection.style.minHeight = '100vh';
         }
       } else {
@@ -1277,14 +1277,14 @@
         document.getElementById('navLogoText').style.display = 'none';
 
         if (isMobile) {
-          subnav.style.top = '122px';
-          ciudadesBar.style.top = '166px';
+          subnav.style.top = '142px';
+          ciudadesBar.style.top = '186px';
           heroSection.style.paddingTop = '2rem';
           heroSection.style.minHeight = 'auto';
         } else {
-          subnav.style.top = '162px';
-          ciudadesBar.style.top = '234px';
-          heroSection.style.paddingTop = '18rem';
+          subnav.style.top = '202px';
+          ciudadesBar.style.top = '274px';
+          heroSection.style.paddingTop = '22rem';
           heroSection.style.minHeight = '100vh';
         }
       }

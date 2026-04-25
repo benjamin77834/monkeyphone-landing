@@ -79,7 +79,7 @@
       50% { transform: translateY(-5px); }
     }
     @media (max-width: 768px) {
-      .kingkong-cintillo { height: 60px; position: relative !important; top: auto !important; margin-top: 62px; }
+      .kingkong-cintillo { height: 60px; }
       .cintillo-letter { font-size: 1.1rem; }
       .kingkong-cintillo .cintillo-text { left: 0.75rem; bottom: 8px; }
     }
@@ -537,10 +537,9 @@
       .hero p { font-size: 0.95rem; margin-bottom: 1.5rem; }
       .subnav { height: 44px; }
       .subnav-tab { font-size: 0.75rem; letter-spacing: 0; white-space: nowrap; }
-      .subnav { position: relative !important; top: auto !important; margin-top: 0; }
       .countries-carousel-wrapper {
         position: relative !important; top: auto !important;
-        margin-top: 0; padding: 0.5rem 0;
+        margin-top: 134px; padding: 0.5rem 0;
       }
       .country-card { width: 100px; min-width: 100px; height: 100px; border-radius: 12px; }
       .country-card span { font-size: 0.65rem; padding: 1.2rem 0.4rem 0.3rem; }
@@ -1199,10 +1198,13 @@
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       document.getElementById(tab).classList.add('active');
 
-      // Cambiar hero
       var countriesBar = document.getElementById('countriesBar');
       var ciudadesBar = document.getElementById('ciudadesBar');
       var heroSection = document.getElementById('heroSection');
+      var isMobile = window.innerWidth <= 768;
+      var subnav = document.querySelector('.subnav');
+      var cintillo = document.getElementById('kingkongCintillo');
+
       if (tab === 'internacional') {
         document.getElementById('heroNacional').style.display = 'none';
         document.getElementById('heroIntl').style.display = 'block';
@@ -1212,12 +1214,19 @@
         document.getElementById('navLogoText').style.display = 'none';
         document.getElementById('navBanner').style.display = 'none';
         document.querySelector('.navbar').classList.add('intl-mode');
-        document.getElementById('kingkongCintillo').style.display = 'block';
-        document.querySelector('.subnav').style.top = '162px';
-        countriesBar.style.top = '234px';
-        var isMobile = window.innerWidth <= 768;
-        heroSection.style.paddingTop = isMobile ? '2rem' : '15rem';
-        heroSection.style.minHeight = isMobile ? 'auto' : '100vh';
+        cintillo.style.display = 'block';
+
+        if (isMobile) {
+          subnav.style.top = '122px';
+          countriesBar.style.top = '166px';
+          heroSection.style.paddingTop = '2rem';
+          heroSection.style.minHeight = 'auto';
+        } else {
+          subnav.style.top = '162px';
+          countriesBar.style.top = '234px';
+          heroSection.style.paddingTop = '18rem';
+          heroSection.style.minHeight = '100vh';
+        }
       } else {
         document.getElementById('heroNacional').style.display = 'block';
         document.getElementById('heroIntl').style.display = 'none';
@@ -1227,12 +1236,19 @@
         document.getElementById('navLogoText').style.display = 'block';
         document.getElementById('navBanner').style.display = 'none';
         document.querySelector('.navbar').classList.remove('intl-mode');
-        document.getElementById('kingkongCintillo').style.display = 'none';
-        document.querySelector('.subnav').style.top = '62px';
-        ciudadesBar.style.top = '134px';
-        var isMobile = window.innerWidth <= 768;
-        heroSection.style.paddingTop = isMobile ? '2rem' : '15rem';
-        heroSection.style.minHeight = isMobile ? 'auto' : '100vh';
+        cintillo.style.display = 'none';
+
+        if (isMobile) {
+          subnav.style.top = '62px';
+          ciudadesBar.style.top = '106px';
+          heroSection.style.paddingTop = '2rem';
+          heroSection.style.minHeight = 'auto';
+        } else {
+          subnav.style.top = '62px';
+          ciudadesBar.style.top = '134px';
+          heroSection.style.paddingTop = '15rem';
+          heroSection.style.minHeight = '100vh';
+        }
       }
 
       // FAQ según tab

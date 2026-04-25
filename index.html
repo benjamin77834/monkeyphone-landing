@@ -1104,8 +1104,7 @@
       e.preventDefault();
       const phone = document.getElementById('phoneInput').value.trim();
       if (phone.length === 10) {
-        localStorage.setItem('formData', JSON.stringify({ msisdn: phone, name: '', app: '1', serv: 'profile' }));
-        window.location.href = 'https://app.monkeyfon.com/';
+        window.location.href = 'https://app.monkeyfon.com/?msisdn=' + phone;
       }
     });
 

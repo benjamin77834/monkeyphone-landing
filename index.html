@@ -50,13 +50,19 @@
     .navbar-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
     .navbar-logo img { width: 48px; height: 48px; border-radius: 12px; }
     .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
-    .navbar-banner { display: none; width: 100%; height: 70px; border-radius: 0; object-fit: cover; object-position: center; }
-    .navbar.intl-mode { padding: 0; }
-    .navbar.intl-mode .navbar-banner { display: block; }
-    .navbar.intl-mode .navbar-links { position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); }
+    .navbar-banner { display: none; }
+    .navbar.intl-mode { }
+
+    /* CINTILLO KING KONG */
+    .kingkong-cintillo {
+      position: fixed; top: 62px; left: 0; right: 0; z-index: 1001;
+      display: none; height: 80px; overflow: hidden;
+    }
+    .kingkong-cintillo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+    }
     @media (max-width: 768px) {
-      .navbar-banner { height: 55px; }
-      .navbar.intl-mode .navbar-links { right: 1rem; }
+      .kingkong-cintillo { height: 50px; }
     }
     .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
     .navbar-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
@@ -558,6 +564,11 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
+
+  <!-- CINTILLO KING KONG -->
+  <div class="kingkong-cintillo" id="kingkongCintillo">
+    <img src="kingkong-banner.png" alt="Monkey Phone Internacional">
+  </div>
 
   <!-- SEGUNDA BARRA: NACIONAL / INTERNACIONAL -->
   <div class="subnav">
@@ -1165,8 +1176,11 @@
         ciudadesBar.style.display = 'none';
         document.getElementById('navLogoImg').style.display = 'none';
         document.getElementById('navLogoText').style.display = 'none';
-        document.getElementById('navBanner').style.display = 'block';
+        document.getElementById('navBanner').style.display = 'none';
         document.querySelector('.navbar').classList.add('intl-mode');
+        document.getElementById('kingkongCintillo').style.display = 'block';
+        document.querySelector('.subnav').style.top = '142px';
+        countriesBar.style.top = '214px';
         var isMobile = window.innerWidth <= 768;
         heroSection.style.paddingTop = isMobile ? '2rem' : '15rem';
         heroSection.style.minHeight = isMobile ? 'auto' : '100vh';
@@ -1179,6 +1193,9 @@
         document.getElementById('navLogoText').style.display = 'block';
         document.getElementById('navBanner').style.display = 'none';
         document.querySelector('.navbar').classList.remove('intl-mode');
+        document.getElementById('kingkongCintillo').style.display = 'none';
+        document.querySelector('.subnav').style.top = '62px';
+        ciudadesBar.style.top = '134px';
         var isMobile = window.innerWidth <= 768;
         heroSection.style.paddingTop = isMobile ? '2rem' : '15rem';
         heroSection.style.minHeight = isMobile ? 'auto' : '100vh';

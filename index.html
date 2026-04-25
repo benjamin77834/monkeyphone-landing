@@ -63,7 +63,7 @@
       width: 100%; height: 100%; object-fit: cover; object-position: center 55%;
     }
     .kingkong-cintillo .cintillo-text {
-      position: absolute; left: 2.5rem; bottom: 12px;
+      position: absolute; left: 2.5rem; top: 12px;
       display: flex; gap: 0.2rem;
     }
     .cintillo-letter {
@@ -81,7 +81,7 @@
     @media (max-width: 768px) {
       .kingkong-cintillo { height: 60px; }
       .cintillo-letter { font-size: 1.1rem; }
-      .kingkong-cintillo .cintillo-text { left: 0.75rem; bottom: 8px; }
+      .kingkong-cintillo .cintillo-text { left: 0.75rem; top: 6px; }
     }
     .navbar-logo span { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
     .navbar-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
@@ -587,6 +587,25 @@
   <!-- CINTILLO KING KONG -->
   <div class="kingkong-cintillo" id="kingkongCintillo">
     <img src="kingkong-banner.png" alt="Monkey Phone Internacional">
+    <div class="cintillo-text">
+      <span class="cintillo-letter accent" style="animation-delay:0s">M</span>
+      <span class="cintillo-letter" style="animation-delay:0.1s">o</span>
+      <span class="cintillo-letter" style="animation-delay:0.15s">n</span>
+      <span class="cintillo-letter" style="animation-delay:0.2s">k</span>
+      <span class="cintillo-letter" style="animation-delay:0.25s">e</span>
+      <span class="cintillo-letter" style="animation-delay:0.3s">y</span>
+      <span style="width:8px; display:inline-block;"></span>
+      <span class="cintillo-letter accent" style="animation-delay:0.4s">P</span>
+      <span class="cintillo-letter" style="animation-delay:0.45s">h</span>
+      <span class="cintillo-letter" style="animation-delay:0.5s">o</span>
+      <span class="cintillo-letter" style="animation-delay:0.55s">n</span>
+      <span class="cintillo-letter" style="animation-delay:0.6s">e</span>
+    </div>
+  </div>
+
+  <!-- CINTILLO MEXICO NACIONAL -->
+  <div class="kingkong-cintillo" id="mexicoCintillo">
+    <img src="mexico-banner.png" alt="Monkey Phone México">
     <div class="cintillo-text">
       <span class="cintillo-letter accent" style="animation-delay:0s">M</span>
       <span class="cintillo-letter" style="animation-delay:0.1s">o</span>
@@ -1204,6 +1223,7 @@
       var isMobile = window.innerWidth <= 768;
       var subnav = document.querySelector('.subnav');
       var cintillo = document.getElementById('kingkongCintillo');
+      var mexicoCintillo = document.getElementById('mexicoCintillo');
 
       if (tab === 'internacional') {
         document.getElementById('heroNacional').style.display = 'none';
@@ -1215,6 +1235,7 @@
         document.getElementById('navBanner').style.display = 'none';
         document.querySelector('.navbar').classList.add('intl-mode');
         cintillo.style.display = 'block';
+        mexicoCintillo.style.display = 'none';
 
         if (isMobile) {
           subnav.style.top = '122px';
@@ -1237,16 +1258,19 @@
         document.getElementById('navBanner').style.display = 'none';
         document.querySelector('.navbar').classList.remove('intl-mode');
         cintillo.style.display = 'none';
+        mexicoCintillo.style.display = 'block';
+        document.getElementById('navLogoImg').style.display = 'none';
+        document.getElementById('navLogoText').style.display = 'none';
 
         if (isMobile) {
-          subnav.style.top = '62px';
-          ciudadesBar.style.top = '106px';
+          subnav.style.top = '122px';
+          ciudadesBar.style.top = '166px';
           heroSection.style.paddingTop = '2rem';
           heroSection.style.minHeight = 'auto';
         } else {
-          subnav.style.top = '62px';
-          ciudadesBar.style.top = '134px';
-          heroSection.style.paddingTop = '15rem';
+          subnav.style.top = '162px';
+          ciudadesBar.style.top = '234px';
+          heroSection.style.paddingTop = '18rem';
           heroSection.style.minHeight = '100vh';
         }
       }
